@@ -12,7 +12,7 @@ class visitor(models.Model):
     tellphone = models.CharField(max_length = 10, blank = True)
     Alumni_id = models.CharField(max_length = 9, blank = True)
     home_address = models.CharField(max_length = 50)
-    connect_addres = models.CharField(max_length = 50)
+    connect_address = models.CharField(max_length = 50)
     created_date = models.DateTimeField(default=timezone.now)
 
 # 進出資料表

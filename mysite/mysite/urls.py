@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, url
+
+from library.views import sign_in
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^sign_in/$', sign_in),
 ]
