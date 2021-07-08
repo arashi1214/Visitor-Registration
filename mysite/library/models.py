@@ -5,12 +5,11 @@ from django.utils import timezone
 
 # 外賓資料表
 class visitor(models.Model):
-    visitor_id = models.CharField(max_length = 10, primary_key = True)
     visitor_name = models.CharField(max_length = 20)
-    email = models.EmailField()
-    cellphone = models.CharField(max_length = 10)
-    tellphone = models.CharField(max_length = 10, blank = True)
+    visitor_id = models.CharField(max_length = 10, primary_key = True)
     Alumni_id = models.CharField(max_length = 9, blank = True)
+    phone_num = models.CharField(max_length = 15)
+    email = models.EmailField()
     home_address = models.CharField(max_length = 50)
     connect_address = models.CharField(max_length = 50)
     created_date = models.DateTimeField(default=timezone.now)
@@ -26,3 +25,8 @@ class access(models.Model):
     def return_time(self):
         self.return_date = models.DateTimeField(blank=True, null=True)
         self.save()
+
+
+# 本機測試時候更改model資料後，要告至django的寫法
+# manage.py makemigrations
+# manage.py migrate
