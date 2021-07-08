@@ -12,7 +12,7 @@ class SignInForm(forms.ModelForm):
 		# 指定使用的model
 		model = visitor
 		# 設定要顯示的欄位
-		fields = ('visitor_id', 'visitor_name', 'phone_num','email', 'Alumni_id', 'home_address', 'connect_address')
+		fields = ('visitor_id', 'visitor_name', 'phone_num','email', 'Alumni_id')
 		
 		# 設定表單的顯示外觀
 		# widgets = {
@@ -27,9 +27,7 @@ class SignInForm(forms.ModelForm):
 			'Alumni_id': '校友證字號',
 			'visitor_name': '名稱',
 			'phone_num': '連絡電話',
-			'email': '電子郵件',
-			'home_address': '住家地址',
-			'connect_address': '通訊地址'		
+			'email': '電子郵件',	
 		}
 
 # 換證

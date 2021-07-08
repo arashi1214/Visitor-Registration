@@ -16,7 +16,7 @@ class visitor(models.Model):
 
 # 進出資料表
 class access(models.Model):
-    visitor_id = models.ForeignKey('visitor', on_delete = models.CASCADE) #
+    visitor_id = models.ForeignKey('visitor', on_delete = models.CASCADE)
     Alumni_id = models.CharField(max_length = 9, blank = True)
     visitor_card = models.CharField(max_length = 10)
     place = models.CharField(max_length = 10)
