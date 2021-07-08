@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import fields
 from .models import visitor, access
 
 def email_check(email):
@@ -29,4 +30,16 @@ class SignInForm(forms.ModelForm):
 			'email': '電子郵件',
 			'home_address': '住家地址',
 			'connect_address': '通訊地址'		
+		}
+
+# 換證
+class Register(forms.ModelForm):
+	class Meta:
+		model = access
+		fields = ('place', 'visitor_id', 'Alumni_id', 'visitor_card')
+		labels = {
+			'place': '登記地點',
+			'visitor_id': '身分證字號',
+			'Alumni_id': '校友證號',
+			'visitor_card': '訪客證號'
 		}
