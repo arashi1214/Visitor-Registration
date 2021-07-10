@@ -444,6 +444,16 @@
 			}
 		}
 
+		function CopyAddress(){
+			var choice_city = document.getElementById("ha1").value;
+			var choice_area = document.getElementById("ha2").value;
+			var address_all = document.getElementById("ha3").value;
+
+			document.getElementById("ma1").value = choice_city;
+			document.getElementById("ma2").value = choice_area;
+			document.getElementById("ma3").value = address_all;
+		}
+
 		window.onload = function()
 		{ 
 			LoadData();
@@ -466,7 +476,8 @@
 	            <input type="text" name="home_address_area" list="home_areas" id="ha2">
 	            <datalist id="home_areas">
 	            </datalist>
-	            <input type="text" name="home_address">
+
+	            <input type="text" name="home_address" id="ha3">
 			</div>
 
 			<div>
@@ -477,7 +488,8 @@
 	            <input type="text" name="mail_address_area" list="mail_areas" id="ma2">
 	            <datalist id="mail_areas">
 	            </datalist>
-	            <input type="text" name="mail_address">
+	            <input type="text" name="mail_address" id="ma3">
+	            <input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
         	</div>
 
             <input class="btn btn-success" type="submit" value="註冊" />
