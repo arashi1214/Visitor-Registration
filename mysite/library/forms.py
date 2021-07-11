@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models.enums import Choices
 from django.forms import fields
 from .models import visitor, access
 
@@ -31,10 +32,13 @@ class SignInForm(forms.ModelForm):
 		}
 
 # 換證
-class Register(forms.ModelForm):
+class RegisterForm(forms.ModelForm):
 	class Meta:
 		model = access
 		fields = ('place', 'visitor_id', 'Alumni_id', 'visitor_card')
+		widgets = {
+		    'visitor_id': forms.TextInput(),
+		}
 		labels = {
 			'place': '登記地點',
 			'visitor_id': '身分證字號',
