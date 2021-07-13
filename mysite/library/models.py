@@ -16,10 +16,15 @@ class visitor(models.Model):
 
 # 進出資料表
 class access(models.Model):
+    place_choices = (
+        ('濟時樓', '濟時樓'),
+        ('公博樓', '公博樓'),
+        ('公博樓','國璽樓')
+    )
     visitor_id = models.ForeignKey('visitor', on_delete = models.CASCADE)
     Alumni_id = models.CharField(max_length = 9, blank = True)
     visitor_card = models.CharField(max_length = 10)
-    place = models.CharField(max_length = 10)
+    place = models.CharField(max_length = 10, choices=place_choices)
     lend_date = models.DateTimeField(default=timezone.now)
     
     def return_time(self):

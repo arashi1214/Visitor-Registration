@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from .models import visitor, access
-from .forms import SignInForm
+from .forms import SignInForm, RegisterForm
 
 import time
 
@@ -26,3 +25,19 @@ def sign_in(request):
 		data.save()
 
 	return render(request, 'sign_in.html', context)
+
+def register(request):
+	form = RegisterForm()
+	
+	context = {
+		'form': form
+	}
+
+	if request.method == 'POST':
+		place = request.POST['place']
+		visitor_id = request.POST['visitor_id']
+		Alumni_id = request.POST['Alumni_id']
+		visitor_card = request.POST['visitor_card']
+	#Show_visitor_data = visitor.objects.filter(visitor_id=visitor_id)
+	#data = visitor.objects.create()
+	return render(request, 'register.html', context)
