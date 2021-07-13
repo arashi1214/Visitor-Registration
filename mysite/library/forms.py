@@ -15,10 +15,10 @@ class SignInForm(forms.ModelForm):
 		fields = ('visitor_id', 'visitor_name', 'phone_num','email', 'Alumni_id')
 		
 		# 設定表單的顯示外觀
-		# widgets = {
-		#     'name': forms.TextInput(attrs={'class': 'form-control'}),
-		#     'price': forms.NumberInput(attrs={'class': 'form-control'})
-		# }
+		widgets = {
+		    # 'visitor_name': forms.Select(choices=[("濟時樓", "濟時樓"), ("公博樓", "公博樓"), ("國璽樓", "國璽樓")]),
+		    # 'price': forms.NumberInput(attrs={'class': 'form-control'})
+		}
 
 		#設定表單的顯示欄位名稱
 
@@ -30,6 +30,12 @@ class SignInForm(forms.ModelForm):
 			'email': '電子郵件',	
 		}
 
+	def clean_visitor_id(self, *args, **kwargs):
+		visitor_id = self.cleaned_data.get('visitor_id')
+		print(visitor_id) 
+		if len(visitor_id) < 5:
+			raise forms.ValidationError('字數不足')
+		return visitor_id
 # 換證
 class Register(forms.ModelForm):
 	class Meta:

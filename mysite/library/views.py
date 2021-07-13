@@ -22,15 +22,6 @@ def sign_in(request):
 		home_address = request.POST['home_address_city'] + request.POST['home_address_area'] + request.POST['home_address']
 		connect_address = request.POST['mail_address_city'] + request.POST['mail_address_area'] + request.POST['mail_address']
 
-		print(visitor_id)
-		print(visitor_name)
-		print(Alumni_id)
-		print(phone_num)
-		print(email)
-		print(home_address)
-		print(connect_address)
-		print(time.localtime())
-
 		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address)
 		data.save()
 
