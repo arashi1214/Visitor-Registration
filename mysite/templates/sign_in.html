@@ -454,6 +454,19 @@
 		document.getElementById("ma3").value = address_all;
 	}
 
+	function CheckVisitorId(){
+		id_input = document.getElementById("id_visitor_id");
+		id_ = id_input.value;
+		let num = id_[0].charCodeAt() - 55;
+		console.log(num % 10);
+		
+		checking = parseInt(num / 10) + (num % 10) * 9 + parseInt(id_[1]) * 8 + parseInt(id_[2]) * 7 + parseInt(id_[3]) * 6 + parseInt(id_[4]) * 5 + parseInt(id_[5]) * 4 + parseInt(id_[6]) * 3 + parseInt(id_[7]) * 2 + parseInt(id_[8]) + parseInt(id_[9]);
+
+		if(checking % 10 != 0){
+			id_input.style.backgroundColor = "red";
+		}
+	}
+
 	window.onload = function () {
 		LoadData();
 	}
@@ -464,8 +477,11 @@
 	{% csrf_token %}
 	<div class="form-group">
 		<div class="form-group col-md-6">
-
-			{{ form }}
+			<div onchange="CheckVisitorId()"><p>身分證字號：{{ form.visitor_id }}</p></div>
+			{{ form.visitor_name }}
+			{{ form.Alumni_id }}
+			{{ form.phone_num }}
+			{{ form.email }}
 
 			<div>
 				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
