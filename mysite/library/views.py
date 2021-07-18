@@ -3,6 +3,9 @@ from django.urls import reverse
 from django.contrib import messages
 from .models import visitor, access
 from .forms import SignInForm, RegisterForm
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
 
 def sign_in(request):
 

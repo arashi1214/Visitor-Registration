@@ -127,14 +127,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 郵件配置
-EMAIL_USE_SSL = True
-
-EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
-
-EMAIL_PORT = 465
-
-EMAIL_HOST_USER = environ.get("EMAIL_SENDER") # 帳號
-
-EMAIL_HOST_PASSWORD = environ.get("EMAIL_PWD")  # 授權碼（****）
-# 預設郵件
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  #SMTP伺服器
+EMAIL_PORT = 587  #TLS通訊埠號
+EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
+EMAIL_HOST_USER = 'blackcat.in.the.midnight@gmail.com'  #寄件者電子郵件
+EMAIL_HOST_PASSWORD = 'znqgnkxrnpsvpcnd'  #Gmail應用程式的密碼
