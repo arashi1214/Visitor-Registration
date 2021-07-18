@@ -125,3 +125,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 郵件配置
+EMAIL_USE_SSL = True
+
+EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
+
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = environ.get("EMAIL_SENDER") # 帳號
+
+EMAIL_HOST_PASSWORD = environ.get("EMAIL_PWD")  # 授權碼（****）
+# 預設郵件
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
