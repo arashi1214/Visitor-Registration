@@ -26,10 +26,7 @@ class access(models.Model):
     visitor_card = models.CharField(max_length = 10)
     place = models.CharField(max_length = 10, choices=place_choices)
     lend_date = models.DateTimeField(default=timezone.now)
-    
-    def return_time(self):
-        self.return_date = models.DateTimeField(blank=True, null=True)
-        self.save()
+    return_date = models.DateTimeField(blank=True, null=True)
 
 
 # 本機測試時候更改model資料後，要告至django的寫法

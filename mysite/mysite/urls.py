@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 
-from library.views import sign_in, register
+from library.views import sign_in, register, Return
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^sign_in/$', sign_in),
-    url(r'^register/$', register)
+    url(r'^register/$', register),
+    url(r'^return/$', Return),
 ]

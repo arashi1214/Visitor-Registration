@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from datetime import datetime
 from django.urls import reverse
 from django.contrib import messages
 from .models import visitor, access
@@ -42,6 +43,20 @@ def register(request):
 		visitor_id = request.POST['visitor_id']
 		Alumni_id = request.POST['Alumni_id']
 		visitor_card = request.POST['visitor_card']
-	#Show_visitor_data = visitor.objects.filter(visitor_id=visitor_id)
-	#data = visitor.objects.create()
+
+		id = visitor.objects.filter(visitor_id = visitor_id).first()
+
+		data = access.objects.create(place = place, visitor_id = id, Alumni_id = Alumni_id, visitor_card = visitor_card)
+		data.save()
+	
 	return render(request, 'register.html', context)
+
+def Return(request):
+	if request.method == 'POST':
+		visitor_card = request.POST['visitor_card']
+		
+		data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
+		data.return_date = datetime.now()
+		data.save()
+
+	return render(request, 'return.html')

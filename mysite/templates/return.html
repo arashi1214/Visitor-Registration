@@ -1,0 +1,13 @@
+{% include 'base.html' %}
+
+{% block title %}
+<title>訪客證歸還</title>
+{% endblock %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div>
+        歸還訪客證號：
+        <input name="visitor_card">
+    </div>
+    <input class="btn btn-success" type="submit" value="確認歸還">
+</form>
