@@ -3,6 +3,11 @@ from django.db import models
 from django.db.models.base import ModelState
 from django.utils import timezone
 
+# Token 產生測試
+from django.contrib.auth.hashers import make_password
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer,SignatureExpired
+from itsdangerous import BadSignature,SignatureExpired
+
 # 外賓資料表
 class visitor(models.Model):
     visitor_name = models.CharField(max_length = 20)
@@ -14,6 +19,29 @@ class visitor(models.Model):
     connect_address = models.CharField(max_length = 50)
     created_date = models.DateTimeField(default=timezone.now)
     is_acitve = models.BooleanField(default=False)
+
+        #生成token
+    def generate_activate_token(self, expires_in=360):
+        s = Serializer(settings.SECRET_KEY, expires_in)
+        return s.dumps({'visitor_id': self.visitor_id})
+
+    #token校验
+    @staticmethod
+    def check_activate_token(token):
+        s = Serializer(settings.SECRET_KEY)
+        try:
+            data = s.loads(token)
+        except BadSignature:
+            return '無效的驗證碼'
+        except SignatureExpired:
+            return '驗證碼已過期'
+        user = visitor.objects.filter(visitor_id=data.get('visitor_id'))[0]
+        if not user:
+            return '該帳號不存在'
+        if not user.isactivate:
+            user.isactivate = True
+            user.save()
+        return '驗證成功'
 
 # 進出資料表
 class access(models.Model):

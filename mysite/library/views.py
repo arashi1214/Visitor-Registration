@@ -7,6 +7,8 @@ from .forms import SignInForm, RegisterForm
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render
 
 
 def sign_in(request):
@@ -29,22 +31,16 @@ def sign_in(request):
 		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address)
 		data.save()
 
+		# 產生token
+		token = visitor().generate_activate_token().decode('utf-8')
+
 		# 寄送email
-		# 電子郵件內容樣板(html)
-		# email_template = render_to_string(
-		# 	'base.html',
-		# 	{'username': request.user.username}
-		# )
-
-		email = EmailMessage(
-			'註冊成功通知信',  # 電子郵件標題
-			"email_template",  # 電子郵件內容
-			settings.EMAIL_HOST_USER,  # 寄件者
-			[email]  # 收件者
-		)
-
-		email.fail_silently = False
-		email.send()
+		subject, from_email, to = '信箱驗證', 'blackcat.in.the.midnight@gmail.com', email
+		text_content = 'This is an important message.'
+		html_content = '<p><a href="http://127.0.0.1:8000/sign_in/?token=' + token + '">驗證</a></p>'
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(html_content, "text/html")
+		msg.send()
 
 	return render(request, 'sign_in.html', context)
 
