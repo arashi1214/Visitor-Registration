@@ -1,0 +1,9 @@
+asgiref==3.4.1
+Django==3.2.5
+itsdangerous==2.0.1
+prompt-toolkit==3.0.19
+pytz==2021.1
+sqlparse==0.4.1
+typing-extensions==3.10.0.0
+utils==1.0.1
+wcwidth==0.2.5
