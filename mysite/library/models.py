@@ -18,28 +18,28 @@ class visitor(models.Model):
     home_address = models.CharField(max_length = 50)
     connect_address = models.CharField(max_length = 50)
     created_date = models.DateTimeField(default=timezone.now)
-    is_acitve = models.BooleanField(default=False)
+    isactivate = models.BooleanField(default=False)
+    token = models.CharField(max_length = 500, default="")
 
         #生成token
     def generate_activate_token(self, expires_in=360):
         s = Serializer(settings.SECRET_KEY, expires_in)
         return s.dumps({'visitor_id': self.visitor_id})
 
-    #token校验
     @staticmethod
     def check_activate_token(token):
-        s = Serializer(settings.SECRET_KEY)
-        try:
-            data = s.loads(token)
-        except BadSignature:
-            return '無效的驗證碼'
-        except SignatureExpired:
-            return '驗證碼已過期'
-        user = visitor.objects.filter(visitor_id=data.get('visitor_id'))[0]
+        # s = Serializer(settings.SECRET_KEY)
+        # try:
+        #     data = s.loads(token)
+        # except BadSignature:
+        #     return '無效的驗證碼'
+        # except SignatureExpired:
+        #     return '驗證碼已過期'
+        user = visitor.objects.filter(token=token).first()
         if not user:
             return '該帳號不存在'
-        if not user.isactivate:
-            user.isactivate = True
+        if not user.is_acitve:
+            user.is_acitve = True
             user.save()
         return '驗證成功'
 

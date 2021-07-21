@@ -9,7 +9,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render
-
+from django.http import HttpResponse
 
 def sign_in(request):
 
@@ -28,22 +28,27 @@ def sign_in(request):
 		home_address = request.POST['home_address_city'] + request.POST['home_address_area'] + request.POST['home_address']
 		connect_address = request.POST['mail_address_city'] + request.POST['mail_address_area'] + request.POST['mail_address']
 
-		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address)
-		data.save()
-
 		# 產生token
 		token = visitor().generate_activate_token().decode('utf-8')
+		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address, token=token)
+		
+		data.save()
 
 		# 寄送email
 		subject, from_email, to = '信箱驗證', 'blackcat.in.the.midnight@gmail.com', email
 		text_content = 'This is an important message.'
-		html_content = '<p><a href="http://127.0.0.1:8000/sign_in/?token=' + token + '">驗證</a></p>'
+		html_content = '<p><a href="http://127.0.0.1:8000/activate/?token=' + token + '">驗證</a></p>'
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
 
 	return render(request, 'sign_in.html', context)
 
+
+def activate(request):
+    token = request.GET['token']
+    result = visitor.check_activate_token(token)
+    return HttpResponse(result)
 
 def register(request):
 	form = RegisterForm()
