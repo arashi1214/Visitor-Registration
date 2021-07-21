@@ -7,23 +7,7 @@ from .forms import SignInForm, RegisterForm
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
-# from utils.token import Token
-# from django.core.mail import send_mail
 
-# token_confirm = Token(SECRET_KEY)
-
-# class Token():
-# 	def __init__(self,security_key):
-# 		self.security_key = security_key
-# 		self.salt = base64.encodestring(security_key)
-# 	def generate_validate_token(self,username):
-# 		serializer = utsr(self.security_key)
-# 		return serializer.dumps(username,self.salt)
-# 	def confirm_validate_token(self,token,expiration=3600):
-# 		serializer = utsr(self.security_key)
-# 		return serializer.loads(token,
-# 		salt=self.salt,
-# 		max_age=expiration) 
 
 def sign_in(request):
 
@@ -45,8 +29,25 @@ def sign_in(request):
 		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address)
 		data.save()
 
+		# 寄送email
+		# 電子郵件內容樣板(html)
+		# email_template = render_to_string(
+		# 	'base.html',
+		# 	{'username': request.user.username}
+		# )
+
+		email = EmailMessage(
+			'註冊成功通知信',  # 電子郵件標題
+			"email_template",  # 電子郵件內容
+			settings.EMAIL_HOST_USER,  # 寄件者
+			[email]  # 收件者
+		)
+
+		email.fail_silently = False
+		email.send()
 
 	return render(request, 'sign_in.html', context)
+
 
 def register(request):
 	form = RegisterForm()

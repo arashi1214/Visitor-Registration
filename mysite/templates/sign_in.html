@@ -464,6 +464,8 @@
 
 		if(checking % 10 != 0){
 			id_input.style.backgroundColor = "red";
+		}else{
+			id_input.style.backgroundColor = "white";
 		}
 	}
 
@@ -478,11 +480,12 @@
 	<div class="form-group">
 		<div class="form-group col-md-6">
 			<div onchange="CheckVisitorId()"><p>身分證字號：{{ form.visitor_id }}</p></div>
-			{{ form.visitor_name }}
-			{{ form.Alumni_id }}
-			{{ form.phone_num }}
-			{{ form.email }}
+			<p>名稱：{{ form.visitor_name }}</p>
+			<p>校友證字號：{{ form.Alumni_id }}</p>
+			<p>連絡電話：{{ form.phone_num }}</p>
+			<p>電子郵件：{{ form.email }}</p>
 
+			<p>住家地址</p>
 			<div>
 				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
 				<datalist id="home_cities">
@@ -495,6 +498,7 @@
 				<input type="text" name="home_address" id="ha3">
 			</div>
 
+			<p>通訊地址</p>
 			<div>
 				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
 				<datalist id="mail_cities">
