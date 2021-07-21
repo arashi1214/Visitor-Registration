@@ -13,6 +13,7 @@ class visitor(models.Model):
     home_address = models.CharField(max_length = 50)
     connect_address = models.CharField(max_length = 50)
     created_date = models.DateTimeField(default=timezone.now)
+    is_acitve = models.BooleanField(default=False)
 
 # 進出資料表
 class access(models.Model):
