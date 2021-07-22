@@ -72,10 +72,38 @@ def register(request):
 
 def Return(request):
 	if request.method == 'POST':
-		visitor_card = request.POST['visitor_card']
-		
-		data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
-		data.return_date = datetime.now()
-		data.save()
+		visitor_card = request.POST.get('visitor_card', '')
+		if visitor_card == '':
+			pass
+		else:
+			data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
+			data.return_date = datetime.now()
+			print(data.return_date)
+			# data.save()
+			request.session['data'] = data
+			return redirect('/return/detail', data = data)
 
 	return render(request, 'return.html')
+
+	# 直接顯示
+	# visitor_card = request.GET.get('visitor_card', '')
+	# datas = []
+
+	# if visitor_card == '':
+	# 	pass
+	# else:
+	# 	visitor_card = request.GET.get('visitor_card', None)
+	# 	datas = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True)
+	
+	# context = {
+	# 	'datas': datas
+	# }
+
+	# return render(request, 'return.html', context)
+
+def detail(request, data):
+	datas = list(data)
+	context = {
+		'datas': datas
+	}
+	return render(request, 'detail.html', context)
