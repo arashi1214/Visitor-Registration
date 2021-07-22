@@ -71,9 +71,9 @@ def register(request):
 	return render(request, 'register.html', context)
 
 def detail(request, pk):
-	datas = access.objects.get(pk = pk)
+	data = access.objects.get(pk = pk)
 	context = {
-		'datas': datas
+		'data': data
 	}
 	return render(request, 'detail.html', context)
 
@@ -86,8 +86,7 @@ def Return(request):
 			data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
 			data.return_date = datetime.now()
 			print(data.return_date)
-			# data.save()
-			# request.session['data'] = data
+			data.save()
 			return redirect(str(data.pk) + '/detail', pk = data.pk)
 
 	return render(request, 'return.html')
