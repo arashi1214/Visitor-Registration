@@ -28,6 +28,17 @@ def sign_in(request):
 		home_address = request.POST['home_address_city'] + request.POST['home_address_area'] + request.POST['home_address']
 		connect_address = request.POST['mail_address_city'] + request.POST['mail_address_area'] + request.POST['mail_address']
 
+		try:
+			user_email = visitor.objects.filter(email = emai)
+			print(user_email)
+
+		except Exception as e:
+			user_email = None
+
+		if user_email:
+			#return render(request, 'sign_in.html', {'errmsg': '郵箱已經被使用'})
+			pass
+
 		# 產生token
 		token = visitor().generate_activate_token().decode('utf-8')
 		data = visitor.objects.create(visitor_id=visitor_id, visitor_name=visitor_name, Alumni_id=Alumni_id, phone_num=phone_num, email=email, home_address=home_address, connect_address=connect_address, token=token)
@@ -46,9 +57,9 @@ def sign_in(request):
 
 
 def activate(request):
-    token = request.GET['token']
-    result = visitor.check_activate_token(token)
-    return HttpResponse(result)
+	token = request.GET['token']
+	result = visitor.check_activate_token(token)
+	return HttpResponse(result)
 
 def register(request):
 	form = RegisterForm()
