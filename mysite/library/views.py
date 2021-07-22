@@ -70,6 +70,13 @@ def register(request):
 	
 	return render(request, 'register.html', context)
 
+def detail(request, pk):
+	datas = access.objects.get(pk = pk)
+	context = {
+		'datas': datas
+	}
+	return render(request, 'detail.html', context)
+
 def Return(request):
 	if request.method == 'POST':
 		visitor_card = request.POST.get('visitor_card', '')
@@ -80,8 +87,8 @@ def Return(request):
 			data.return_date = datetime.now()
 			print(data.return_date)
 			# data.save()
-			request.session['data'] = data
-			return redirect('/return/detail', data = data)
+			# request.session['data'] = data
+			return redirect('detail', pk = data.pk)
 
 	return render(request, 'return.html')
 
@@ -101,9 +108,3 @@ def Return(request):
 
 	# return render(request, 'return.html', context)
 
-def detail(request, data):
-	datas = list(data)
-	context = {
-		'datas': datas
-	}
-	return render(request, 'detail.html', context)
