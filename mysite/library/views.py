@@ -88,7 +88,7 @@ def Return(request):
 			print(data.return_date)
 			# data.save()
 			# request.session['data'] = data
-			return redirect('detail', pk = data.pk)
+			return redirect(str(data.pk) + '/detail', pk = data.pk)
 
 	return render(request, 'return.html')
 
