@@ -15,7 +15,8 @@ def sign_in(request):
 
 	form = SignInForm()
 	context = {
-		'form': form
+		'form': form,
+		"errmsg":""
 	}
 
 	if request.method == 'POST':
@@ -29,15 +30,18 @@ def sign_in(request):
 		connect_address = request.POST['mail_address_city'] + request.POST['mail_address_area'] + request.POST['mail_address']
 
 		try:
-			user_email = visitor.objects.filter(email = emai)
+			user_email = visitor.objects.filter(email = email)
 			print(user_email)
 
 		except Exception as e:
 			user_email = None
 
 		if user_email:
-			#return render(request, 'sign_in.html', {'errmsg': '郵箱已經被使用'})
-			pass
+			context = {
+				'form': form,
+				"errmsg":"*郵箱已經被使用"
+			}
+			return render(request, 'sign_in.html', context)
 
 		# 產生token
 		token = visitor().generate_activate_token().decode('utf-8')
