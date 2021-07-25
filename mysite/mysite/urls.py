@@ -17,15 +17,16 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include, url
 
-from library.views import sign_in, register, Return, activate, detail, send_revise_email, revise_database
+from library.views import sign_in, register, Return, activate, detail, send_revise_email, revise_database, admin_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign_in/', sign_in),
+    path('admin_index', admin_index),
     path('register/', register),
     path('return/', Return),
-    path(r'activate/',activate),
+    path(r'activate/', activate),
     path('send_revise_email/', send_revise_email),
-    path(r'revise_database/',revise_database),
+    path(r'revise_database/', revise_database),
     re_path(r'^return/(?P<pk>[0-9]+)/detail/$', detail)
 ]

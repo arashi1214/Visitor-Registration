@@ -65,6 +65,9 @@ def activate(request):
 	result = visitor.check_activate_token(token)
 	return HttpResponse(result)
 
+def admin_index(request):
+	return render(request, 'admin_index.html')
+
 def register(request):
 	form = RegisterForm()
 	
@@ -77,12 +80,9 @@ def register(request):
 		visitor_id = request.POST['visitor_id']
 		Alumni_id = request.POST['Alumni_id']
 		visitor_card = request.POST['visitor_card']
-
 		id = visitor.objects.filter(visitor_id = visitor_id).first()
-
 		data = access.objects.create(place = place, visitor_id = id, Alumni_id = Alumni_id, visitor_card = visitor_card)
 		data.save()
-	
 	return render(request, 'register.html', context)
 
 def detail(request, pk):
@@ -93,34 +93,26 @@ def detail(request, pk):
 	return render(request, 'detail.html', context)
 
 def Return(request):
+	context = {
+		'errmsg': ''
+	}
+
 	if request.method == 'POST':
 		visitor_card = request.POST.get('visitor_card', '')
-		if visitor_card == '':
-			pass
+		data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
+		
+		if data is None:
+			context = {
+				'errmsg': '*查無借用資料，請再次輸入'
+			}
+			return render(request, 'return.html', context)
 		else:
-			data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
+			data = data
 			data.return_date = datetime.now()
 			print(data.return_date)
 			data.save()
 			return redirect(str(data.pk) + '/detail', pk = data.pk)
-
-	return render(request, 'return.html')
-
-	# 直接顯示
-	# visitor_card = request.GET.get('visitor_card', '')
-	# datas = []
-
-	# if visitor_card == '':
-	# 	pass
-	# else:
-	# 	visitor_card = request.GET.get('visitor_card', None)
-	# 	datas = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True)
-	
-	# context = {
-	# 	'datas': datas
-	# }
-
-	# return render(request, 'return.html', context)
+	return render(request, 'return.html', context)
 
 def send_revise_email(request):
 	if request.method == 'POST':

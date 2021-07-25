@@ -8,17 +8,7 @@
     <div>
         歸還訪客證號：
         <input name="visitor_card">
+        <p>{{ errmsg }}</p>
     </div>
     <input class="btn btn-success" type="submit" value="確認歸還">
 </form>
-<!-- <div>
-    {% for data in datas %}
-    <p>歸還地點：{{ data.place }}</p>
-    <p>歸還訪客證：{{ data.visitor_card }}</p>
-    <p>歸還者：{{ data.visitor_id.visitor_name }}</p>
-    <p>身分證：{{ data.visitor_id.visitor_id }}</p>
-    <p>校友證：{{ data.Alumni_id }}</p>
-    {% empty %}
-    <p></p>
-    {% endfor %}
-</div> -->
