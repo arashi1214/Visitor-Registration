@@ -1,0 +1,12 @@
+{% include 'base.html' %}
+{% block title %}
+<title>發送修改確認信</title>
+{% endblock %}
+
+<form method="POST" autocomplete="off">
+	{% csrf_token %}
+	<div>
+		<input type="text" name="email">
+	</div>
+	<input class="btn btn-success" type="submit" value="送出" />
+</form>

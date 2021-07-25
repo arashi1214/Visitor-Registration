@@ -1,12 +1,7 @@
 {% include 'base.html' %}
-{% load static %}
-
 {% block title %}
-<title>註冊</title>
-<script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
-
+<title>修改資料</title>
 {% endblock %}
-
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div class="form-group">

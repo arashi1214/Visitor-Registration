@@ -38,10 +38,15 @@ class visitor(models.Model):
         user = visitor.objects.filter(token=token).first()
         if not user:
             return '該帳號不存在'
-        if not user.is_acitve:
-            user.is_acitve = True
+        if not user.isactivate:
+            user.isactivate = True
+            user.token = ""
             user.save()
-        return '驗證成功'
+            return '驗證成功'
+        if user.isactivate:
+            user.token = ""
+            user.save()
+            return True
 
 # 進出資料表
 class access(models.Model):

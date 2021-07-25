@@ -122,3 +122,41 @@ def Return(request):
 
 	# return render(request, 'return.html', context)
 
+def send_revise_email(request):
+	if request.method == 'POST':
+		email = request.POST['email']
+
+		try:
+			user_email = visitor.objects.filter(email = email)
+		except Exception as e:
+			user_email = None
+
+		if user_email:
+			# 寄送email
+			token = visitor().generate_activate_token().decode('utf-8')
+			user_email = user_email.first()
+			user_email.token = token
+			user_email.save()
+
+			subject, from_email, to = '資料修改', 'blackcat.in.the.midnight@gmail.com', email
+			text_content = 'This is an important message.'
+			html_content = '<p><a href="http://127.0.0.1:8000/revise_database/?token=' + token + '">修改</a></p>'
+			msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
+
+	return render(request, 'send_revise_email.html')
+
+def revise_database(request):
+	token = request.GET['token']
+	result = visitor.check_activate_token(token)
+	if result:
+		print(result)
+		form = SignInForm()
+		
+		context = {
+			'form': form
+		}
+		return render(request, 'revise_database.html', context)
+	else:
+		return HttpResponse("驗證失敗")
