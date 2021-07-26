@@ -1,41 +1,44 @@
 {% include 'base.html' %}
+{% load static %}
+
 {% block title %}
 <title>修改資料</title>
+<script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
 {% endblock %}
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div class="form-group">
 		<div class="form-group col-md-6">
-			<div onchange="CheckVisitorId()"><p>身分證字號：{{ form.visitor_id }}</p></div>
-			<p>名稱：{{ form.visitor_name }}</p>
-			<p>校友證字號：{{ form.Alumni_id }}</p>
-			<p>連絡電話：{{ form.phone_num }}</p>
-			<p>電子郵件：{{ form.email }}</p>
+
+			<p>名稱：<input type="text" name="visitor_name" value="{{ user.visitor_name }}"></p>
+			<p>校友證字號：<input type="text" name="visitor_name" value="{{ user.Alumni_id }}"></p>
+			<p>連絡電話：<input type="text" name="visitor_name" value="{{ user.phone_num }}"></p>
+			<p>電子郵件：<input type="text" name="visitor_name" value="{{ user.email }}"></p>
 			<p>{{ errmsg }}</p>
 
 			<p>住家地址</p>
 			<div>
-				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
+				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1" value="{{ home_city }}">
 				<datalist id="home_cities">
 				</datalist>
 
-				<input type="text" name="home_address_area" list="home_areas" id="ha2">
+				<input type="text" name="home_address_area" list="home_areas" id="ha2" value="{{ home_area }}">
 				<datalist id="home_areas">
 				</datalist>
 
-				<input type="text" name="home_address" id="ha3">
+				<input type="text" name="home_address" id="ha3" value="{{ home_road }}">
 			</div>
 
 			<p>通訊地址</p>
 			<div>
-				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
+				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1" value="{{ connect_city }}">
 				<datalist id="mail_cities">
 				</datalist>
 
-				<input type="text" name="mail_address_area" list="mail_areas" id="ma2">
+				<input type="text" name="mail_address_area" list="mail_areas" id="ma2" value="{{ connect_area }}">
 				<datalist id="mail_areas">
 				</datalist>
-				<input type="text" name="mail_address" id="ma3">
+				<input type="text" name="mail_address" id="ma3" value="{{ connect_road }}">
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
 			</div>
 

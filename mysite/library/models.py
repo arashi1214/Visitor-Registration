@@ -45,8 +45,8 @@ class visitor(models.Model):
             return '驗證成功'
         if user.isactivate:
             user.token = ""
-            user.save()
-            return True
+            #user.save()
+            return True, user
 
 # 進出資料表
 class access(models.Model):

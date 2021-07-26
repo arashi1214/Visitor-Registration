@@ -116,21 +116,21 @@ def Return(request):
 
 def send_revise_email(request):
 	if request.method == 'POST':
-		email = request.POST['email']
+		visitor_id = request.POST['visitor_id']
 
 		try:
-			user_email = visitor.objects.filter(email = email)
+			user = visitor.objects.filter(visitor_id = visitor_id)
 		except Exception as e:
-			user_email = None
+			user = None
 
-		if user_email:
+		if user:
 			# 寄送email
 			token = visitor().generate_activate_token().decode('utf-8')
-			user_email = user_email.first()
-			user_email.token = token
-			user_email.save()
+			user = user.first()
+			user.token = token
+			user.save()
 
-			subject, from_email, to = '資料修改', 'blackcat.in.the.midnight@gmail.com', email
+			subject, from_email, to = '資料修改', 'blackcat.in.the.midnight@gmail.com', user.email
 			text_content = 'This is an important message.'
 			html_content = '<p><a href="http://127.0.0.1:8000/revise_database/?token=' + token + '">修改</a></p>'
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
@@ -141,13 +141,36 @@ def send_revise_email(request):
 
 def revise_database(request):
 	token = request.GET['token']
-	result = visitor.check_activate_token(token)
+	result, user = visitor.check_activate_token(token)
 	if result:
 		print(result)
 		form = SignInForm()
-		
+
+		count = 0
+		home = []
+		for i in range(len(user.home_address)):
+			if user.home_address[i] in ['縣','市','區','鄉','鎮']:
+				home.append(user.home_address[count:i+1])
+				count = i+1
+		home.append(user.home_address[count:i+1])
+
+		count = 0
+		connect = []
+		for i in range(len(user.connect_address)):
+			if user.connect_address[i] in ['縣','市','區','鄉','鎮']:
+				connect.append(user.connect_address[count:i+1])
+				count = i+1
+		connect.append(user.connect_address[count:i+1])
+
 		context = {
-			'form': form
+			'form': form,
+			'user': user,
+			'home_city': home[0],
+			'home_area': home[1],
+			'home_road': home[2],
+			'connect_city': connect[0],
+			'connect_area': connect[1],
+			'connect_road': connect[2]
 		}
 		return render(request, 'revise_database.html', context)
 	else:
