@@ -93,6 +93,7 @@ def register(request):
 			data = access.objects.filter(visitor_id = person.visitor_id, return_date__isnull = True).first()
 			if data == None:
 				print(person.visitor_id)
+				request.session['visitor_id'] = person.visitor_id
 				return redirect('step2/', visitor_id = person.visitor_id)
 			else:
 				context = {
@@ -102,7 +103,8 @@ def register(request):
 				return render(request, 'register.html', context)
 	return render(request, 'register.html', context)
 
-def register_step2(request, visitor_id):
+def register_step2(request):
+	visitor_id = request.session.get('visitor_id', default="")
 	person = visitor.objects.get(visitor_id = visitor_id)
 	context = {
 		'person': person,
