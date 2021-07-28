@@ -92,9 +92,8 @@ def register(request):
 		else:
 			data = access.objects.filter(visitor_id = person.visitor_id, return_date__isnull = True).first()
 			if data == None:
-				print(person.visitor_id)
 				request.session['visitor_id'] = person.visitor_id
-				return redirect('step2/', visitor_id = person.visitor_id)
+				return redirect('step2/')
 			else:
 				context = {
 					'form': form,
@@ -104,22 +103,34 @@ def register(request):
 	return render(request, 'register.html', context)
 
 def register_step2(request):
+	form = RegisterForm()
 	visitor_id = request.session.get('visitor_id', default="")
 	person = visitor.objects.get(visitor_id = visitor_id)
 	context = {
-		'person': person,
+		'form': form,
+		'person': person
 	}
+
 	if request.method == 'POST':
 		visitor_card = request.POST['visitor_card']
-		#data = access.objects.create(place = place, visitor_id = person, Alumni_id = person.Alumni_id, visitor_card = visitor_card)
-		# data.save()
+		place = request.POST['place']
+		data = access.objects.create(place = place, visitor_id = person, Alumni_id = person.Alumni_id, visitor_card = visitor_card)
+		data.save()
+		del request.session['visitor_id']
+		return redirect('/admin_index/')
 	return render(request, 'register_2.html', context)
 
 def detail(request, pk):
 	data = access.objects.get(pk = pk)
+	return_time = datetime.now()
 	context = {
-		'data': data
+		'data': data,
+		'return_time': return_time
 	}
+	if request.method == 'POST':
+		data.return_date = return_time
+		data.save()
+		return redirect('/admin_index/')
 	return render(request, 'detail.html', context)
 
 def Return(request):
@@ -137,10 +148,6 @@ def Return(request):
 			}
 			return render(request, 'return.html', context)
 		else:
-			data = data
-			data.return_date = datetime.now()
-			print(data.return_date)
-			data.save()
 			return redirect(str(data.pk) + '/detail', pk = data.pk)
 	return render(request, 'return.html', context)
 

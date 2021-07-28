@@ -3,10 +3,19 @@
 {% block title %}
 <title>訪客證歸還人確認</title>
 {% endblock %}
-<div>
-    <p>歸還地點：{{ data.place }}</p>
-    <p>歸還訪客證：{{ data.visitor_card }}</p>
-    <p>歸還者：{{ data.visitor_id.visitor_name }}</p>
-    <p>身分證：{{ data.visitor_id.visitor_id }}</p>
-    <p>校友證：{{ data.Alumni_id }}</p>
-</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <div>
+                <p>歸還地點：{{ data.place }}</p>
+                <p>歸還訪客證：{{ data.visitor_card }}</p>
+                <p>歸還者：{{ data.visitor_id.visitor_name }}</p>
+                <p>身分證：{{ data.visitor_id.visitor_id }}</p>
+                <p>校友證：{{ data.Alumni_id }}</p>
+                <p>歸還時間：{{ return_time }}</p>
+                <input class="btn btn-success" type="submit" value="歸還" onclick="alert('歸還成功')">
+            </div>
+        </div>
+    </div>
+</form>

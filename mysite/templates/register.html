@@ -8,9 +8,8 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="form-group col-md-6">
-            <p>地點：{{ form.place }}</p>
             <p>身分證：<input name="visitor_id"></p>
-            <p>校友證：{{ form.Alumni_id }}</p>
+            <p>校友證：<input name="Alumni_id"></p>
             <p>{{ person_status }}</p>
             <input class="btn btn-success" type="submit" value="下一步">
         </div>

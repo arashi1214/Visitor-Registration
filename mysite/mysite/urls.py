@@ -22,7 +22,7 @@ from library.views import sign_in, register, register_step2, Return, activate, d
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign_in/', sign_in),
-    path('admin_index', admin_index),
+    path('admin_index/', admin_index),
     path('register/', register),
     re_path(r'register/step2/', register_step2),
     path('return/', Return),

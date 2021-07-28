@@ -7,8 +7,17 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="form-group col-md-6">
-            <p>借用訪客證：<input name="visitor_card"></p>
-            <input class="btn btn-success" type="submit" value="登記">
+            <div>
+                <p><br>借用者資訊確認</br></p>
+                <p>姓名：{{ person.visitor_name }}</p>
+                <p>身分證：{{ person.visitor_id }}</p>
+                <p>校友證號：{{ person.Alumni_id }}</p>
+            </div>
+            <div>
+                <p>借用地點：{{ form.place }}</p>
+                <p>借用訪客證：{{ form.visitor_card }}</p>
+            </div>
+            <input class="btn btn-success" type="submit" value="確認" onclick="alert('確認借出')">
         </div>
     </div>
 </form>
