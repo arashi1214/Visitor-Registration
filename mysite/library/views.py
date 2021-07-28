@@ -70,20 +70,48 @@ def admin_index(request):
 
 def register(request):
 	form = RegisterForm()
-	
 	context = {
-		'form': form
+		'form': form,
+		'person_status': ""
 	}
 
 	if request.method == 'POST':
-		place = request.POST['place']
 		visitor_id = request.POST['visitor_id']
 		Alumni_id = request.POST['Alumni_id']
-		visitor_card = request.POST['visitor_card']
-		id = visitor.objects.filter(visitor_id = visitor_id).first()
-		data = access.objects.create(place = place, visitor_id = id, Alumni_id = Alumni_id, visitor_card = visitor_card)
-		data.save()
+		if Alumni_id == "":
+			person = visitor.objects.filter(visitor_id = visitor_id).first()
+		elif visitor_id == "":
+			person = visitor.objects.filter(Alumni_id = Alumni_id).first()
+		
+		if person == None or person.isactivate == False:
+			context = {
+				'form': form,
+				'person_status': '查無註冊資料'
+			}
+			return render(request, 'register.html', context)
+		else:
+			data = access.objects.filter(visitor_id = person.visitor_id, return_date__isnull = True).first()
+			if data == None:
+				print(person.visitor_id)
+				return redirect('step2/', visitor_id = person.visitor_id)
+			else:
+				context = {
+					'form': form,
+					'person_status': '此訪客已借用訪客證，尚未歸還'
+				}
+				return render(request, 'register.html', context)
 	return render(request, 'register.html', context)
+
+def register_step2(request, visitor_id):
+	person = visitor.objects.get(visitor_id = visitor_id)
+	context = {
+		'person': person,
+	}
+	if request.method == 'POST':
+		visitor_card = request.POST['visitor_card']
+		#data = access.objects.create(place = place, visitor_id = person, Alumni_id = person.Alumni_id, visitor_card = visitor_card)
+		# data.save()
+	return render(request, 'register_2.html', context)
 
 def detail(request, pk):
 	data = access.objects.get(pk = pk)
@@ -100,7 +128,7 @@ def Return(request):
 	if request.method == 'POST':
 		visitor_card = request.POST.get('visitor_card', '')
 		data = access.objects.filter(visitor_card = visitor_card, return_date__isnull = True).first()
-		
+
 		if data is None:
 			context = {
 				'errmsg': '*查無借用資料，請再次輸入'

@@ -9,14 +9,10 @@
     <div class="form-group">
         <div class="form-group col-md-6">
             <p>地點：{{ form.place }}</p>
-            <div>
-                <p>身分證：{{ form.visitor_id }}</p>
-                <p>校友證：{{ form.Alumni_id }}</p>
-                <input type="button" value="查詢" onclick="">
-            </div>
-            <p>使用訪客證：{{ form.visitor_card }}</p>
-            <input class="btn btn-success" type="submit" value="確認">
+            <p>身分證：<input name="visitor_id"></p>
+            <p>校友證：{{ form.Alumni_id }}</p>
+            <p>{{ person_status }}</p>
+            <input class="btn btn-success" type="submit" value="下一步">
         </div>
     </div>
-
 </form>

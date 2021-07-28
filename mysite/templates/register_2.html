@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+{% block title %}
+<title>訪客證登記</title>
+{% endblock %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="form-group col-md-6">
+            <p>借用訪客證：<input name="visitor_card"></p>
+            <input class="btn btn-success" type="submit" value="登記">
+        </div>
+    </div>
+</form>
