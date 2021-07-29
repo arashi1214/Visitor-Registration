@@ -189,6 +189,18 @@ def send_revise_email(request):
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
+			context = { 
+				'message' : "請察看信箱收取驗證信"
+			}
+
+			return render(request, 'user_index.html', context)
+		else:
+			context = { 
+				'message' : "查無此筆資料，請確認使否有註冊完畢"
+			}
+
+			return render(request, 'user_index.html', context)
+
 	return render(request, 'send_revise_email.html')
 
 def revise_database(request):
