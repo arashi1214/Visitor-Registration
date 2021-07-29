@@ -57,6 +57,14 @@ def sign_in(request):
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
 
+		context = {
+			'message' : '請確認信箱，點選驗證信啟用帳號'
+		}
+
+		#messages.info(request, '請確認信箱，點選驗證信啟用帳號')
+		return render(request, 'user_index.html', context)
+		#return redirect('/user_index', message='請確認信箱，點選驗證信啟用帳號')
+
 	return render(request, 'sign_in.html', context)
 
 
@@ -64,9 +72,13 @@ def activate(request):
 	token = request.GET['token']
 	result = visitor.check_activate_token(token)
 	return HttpResponse(result)
+	# return render(request, 'user_index.html')
 
 def admin_index(request):
 	return render(request, 'admin_index.html')
+
+def user_index(request):
+	return render(request, 'user_index.html')
 
 def register(request):
 	form = RegisterForm()

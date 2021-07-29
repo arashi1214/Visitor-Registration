@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include, url
 
-from library.views import sign_in, register, register_step2, Return, activate, detail, send_revise_email, revise_database, admin_index
+from library.views import sign_in, register, register_step2, Return, activate, detail, send_revise_email, revise_database, admin_index, user_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sign_in/', sign_in),
     path('admin_index/', admin_index),
+    path('user_index/', user_index),
     path('register/', register),
     re_path(r'register/step2/', register_step2),
     path('return/', Return),
