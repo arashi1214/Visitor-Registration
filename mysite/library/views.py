@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def sign_in(request):
 
@@ -65,7 +66,6 @@ def sign_in(request):
 
 	return render(request, 'sign_in.html', context)
 
-
 def activate(request):
 	token = request.GET['token']
 	result = visitor.check_activate_token(token)
@@ -77,12 +77,14 @@ def activate(request):
 	return render(request, 'user_index.html', context)
 	#return HttpResponse(result)
 
+@login_required
 def admin_index(request):
 	return render(request, 'admin_index.html')
 
 def user_index(request):
 	return render(request, 'user_index.html')
 
+@login_required
 def register(request):
 	form = RegisterForm()
 	context = {
@@ -117,6 +119,7 @@ def register(request):
 				return render(request, 'register.html', context)
 	return render(request, 'register.html', context)
 
+@login_required
 def register_step2(request):
 	form = RegisterForm()
 	visitor_id = request.session.get('visitor_id', default="")
@@ -135,6 +138,7 @@ def register_step2(request):
 		return redirect('/admin_index/')
 	return render(request, 'register_2.html', context)
 
+@login_required
 def detail(request, pk):
 	data = access.objects.get(pk = pk)
 	return_time = datetime.now()
@@ -148,6 +152,7 @@ def detail(request, pk):
 		return redirect('/admin_index/')
 	return render(request, 'detail.html', context)
 
+@login_required
 def Return(request):
 	context = {
 		'errmsg': ''
