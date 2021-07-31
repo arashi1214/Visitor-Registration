@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include, url
 
-from library.views import sign_in, register, register_step2, Return, activate, detail, send_revise_email, revise_database, admin_index, user_index
+from library.views import sign_in, register, register_step2, Return, activate, detail, send_revise_email, revise_database, admin_index, user_index, report
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('register/', register),
     re_path(r'register/step2/', register_step2),
     path('return/', Return),
+    path('report/', report),
     path(r'activate/', activate),
     path('send_revise_email/', send_revise_email),
     path(r'revise_database/', revise_database),

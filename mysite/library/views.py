@@ -291,7 +291,6 @@ def revise_database(request):
 		context = { 
 			'message' : "token 已過期"
 		}
-
 		return render(request, 'user_index.html', context)
 
 @login_required

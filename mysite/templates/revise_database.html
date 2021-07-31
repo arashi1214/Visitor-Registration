@@ -1,9 +1,7 @@
 {% include 'base.html' %}
-{% load static %}
 
 {% block title %}
 <title>修改資料</title>
-<script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
 {% endblock %}
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
