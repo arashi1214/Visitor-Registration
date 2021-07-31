@@ -293,3 +293,7 @@ def revise_database(request):
 		}
 
 		return render(request, 'user_index.html', context)
+
+@login_required
+def report(request):
+	return render(request, 'report.html')
