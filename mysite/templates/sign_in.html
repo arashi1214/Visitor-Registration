@@ -19,27 +19,27 @@
 
 			<p>住家地址</p>
 			<div>
-				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
+				<input type="text" required="required" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
 				<datalist id="home_cities">
 				</datalist>
 
-				<input type="text" name="home_address_area" list="home_areas" id="ha2">
+				<input type="text" required="required" name="home_address_area" list="home_areas" id="ha2">
 				<datalist id="home_areas">
 				</datalist>
 
-				<input type="text" name="home_address" id="ha3">
+				<input type="text" required="required" name="home_address" id="ha3">
 			</div>
 
 			<p>通訊地址</p>
 			<div>
-				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
+				<input type="text" required="required" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
 				<datalist id="mail_cities">
 				</datalist>
 
-				<input type="text" name="mail_address_area" list="mail_areas" id="ma2">
+				<input type="text" required="required" name="mail_address_area" list="mail_areas" id="ma2">
 				<datalist id="mail_areas">
 				</datalist>
-				<input type="text" name="mail_address" id="ma3">
+				<input type="text" required="required" name="mail_address" id="ma3">
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
 			</div>
 

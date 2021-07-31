@@ -3,15 +3,34 @@
 <html>
 <head>
 	<meta charset="utf-8">
+
     {% block title %}
     {% endblock %}
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 </head>
 <body>
+    <!--System Logo-->
+    <div id="logo">
+        <img src="/static/assect/Logo.png" height="150">
+        <log><a href="../user_index">登出</a></log>
+    </div>
+    <!--導覽列-->
+    <div>                
+        <nav>
+            <ui id="header">
+                <li><a href="../register">訪客證登記</a></li>
+                <li><a href="../return">歸還訪客證</a></li>
+            </ui>
+        </nav>
+    </div>
+    <div id="content">
+        <h1>keepspace</h1>
+    </div>
 	{% block content %}
     {% endblock %}
 </body>
 </html>
+

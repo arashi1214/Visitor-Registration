@@ -4,7 +4,10 @@
 <title>讀者介面</title>
 {% endblock %}
 <script>
-	alert('{{ message }}');
+	console.log('{{ message }}')
+	if ('{{ message }}' != ""){
+		alert('{{ message }}');
+	}
 </script>
 
 
