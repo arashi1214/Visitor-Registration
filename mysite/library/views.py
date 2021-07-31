@@ -75,7 +75,6 @@ def activate(request):
 	}
 
 	return render(request, 'user_index.html', context)
-	#return HttpResponse(result)
 
 @login_required
 def admin_index(request):
@@ -211,9 +210,56 @@ def send_revise_email(request):
 def revise_database(request):
 	token = request.GET['token']
 	result, user = visitor.check_activate_token(token)
+
+	if request.method == 'POST':
+		visitor_name = request.POST['visitor_name']
+		Alumni_id = request.POST['Alumni_id']
+		phone_num = request.POST['phone_num']
+		email = request.POST['email']
+
+		home_address = request.POST['home_address_city'] + request.POST['home_address_area'] + request.POST['home_address']
+		connect_address = request.POST['mail_address_city'] + request.POST['mail_address_area'] + request.POST['mail_address']
+
+		# 確認信箱是否重複
+		try:
+			user_email = visitor.objects.filter(email = email)
+
+		except Exception as e:
+			user_email = None
+
+		if user_email and email != user.email:
+
+			context = {
+				'user': user,
+				'home_city': request.POST['home_address_city'],
+				'home_area': request.POST['home_address_area'],
+				'home_road': request.POST['home_address'],
+				'connect_city': request.POST['mail_address_city'],
+				'connect_area': request.POST['mail_address_area'],
+				'connect_road': request.POST['mail_address'],
+				"errmsg":"*郵箱已經被使用"
+			}
+
+			return render(request, 'revise_database.html', context)
+		else:
+			
+			user.visitor_name = visitor_name
+			user.Alumni_id = Alumni_id
+			user.phone_num = phone_num
+			user.email = email
+			user.home_address = home_address
+			user.connect_address = connect_address
+			user.token = ""
+
+			user.save()
+			context = { 
+				'message' : '資料修改完畢'
+			}
+
+			return render(request, 'user_index.html', context)
+
+	# 檢查token是否正確
 	if result:
-		print(result)
-		form = SignInForm()
 
 		count = 0
 		home = []
@@ -232,7 +278,6 @@ def revise_database(request):
 		connect.append(user.connect_address[count:i+1])
 
 		context = {
-			'form': form,
 			'user': user,
 			'home_city': home[0],
 			'home_area': home[1],
@@ -243,4 +288,8 @@ def revise_database(request):
 		}
 		return render(request, 'revise_database.html', context)
 	else:
-		return HttpResponse("驗證失敗")
+		context = { 
+			'message' : "token 已過期"
+		}
+
+		return render(request, 'user_index.html', context)
