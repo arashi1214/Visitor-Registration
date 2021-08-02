@@ -5,3 +5,5 @@ from .models import visitor, access
 # 顯示資料庫
 admin.site.register(visitor)
 admin.site.register(access)
+
+admin.site.site_url = '/admin_index'
