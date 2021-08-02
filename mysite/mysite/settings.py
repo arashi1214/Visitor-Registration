@@ -133,3 +133,5 @@ EMAIL_PORT = 587  #TLS通訊埠號
 EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 EMAIL_HOST_USER = 'blackcat.in.the.midnight@gmail.com'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'znqgnkxrnpsvpcnd'  #Gmail應用程式的密碼
+
+LOGOUT_REDIRECT_URL = '/user_index'
