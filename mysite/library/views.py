@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect, HttpResponse
 from datetime import datetime
 from django.urls import reverse
 from django.contrib import messages
@@ -11,6 +11,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+import csv
 
 def sign_in(request):
 
@@ -293,6 +294,80 @@ def revise_database(request):
 		}
 		return render(request, 'user_index.html', context)
 
+# 匯出資料
+def create_workbook(report_type, data_range):
+	output = BytesIO()
+	# 創建Excel文件,不保存,直接輸出
+	workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+	# 設置檔名為student_data
+	worksheet = workbook.add_worksheet(report_type)
+	if report_type == "詳細資料":
+		access_data = access.objects.all()
+
+		title = ["借閱館別","姓名","借用時間","歸還時間"]
+		worksheet.write_row('A1', title)
+
+		count = 0
+		for i in access_data:
+			# 如果在時間範圍之內
+			if i.lend_date.year >= int(data_range['start_year']) and i.lend_date.year <= int(data_range['end_year'])and i.lend_date.month >= int(data_range['start_date']) and i.lend_date.month <= int(data_range['end_date']):
+
+				lend_date = str(i.lend_date.year) + "-" + str(i.lend_date.month) + "-" + str(i.lend_date.day)
+				return_date = str(i.return_date.year) + "-" + str(i.return_date.month) + "-" + str(i.return_date.day)
+
+				output_data = [i.place, i.visitor_id.visitor_name, lend_date, return_date]
+				worksheet.write_row('A' + str(count + 2), output_data)
+				count += 1
+			break
+
+		workbook.close()
+		response.write(output.getvalue())
+		#response = make_response(output.getvalue())
+		output.close()
+		return response
+
 @login_required
 def report(request):
+	
+	if request.method == 'POST':
+		report_type = request.POST['report']
+		start_year = request.POST['start_year']
+		end_year = request.POST['end_year']
+		start_date = request.POST['start_date']
+		end_date = request.POST['end_date']
+		library = request.POST['library'] 
+
+		# data_range = {
+		# 	"start_year": start_year,
+		# 	"end_year": end_year,
+		# 	"start_date": start_date,
+		# 	"end_date": end_date,
+		# 	"library": library
+		# }
+
+		with open("./library/static/data/"+report_type + ".csv", 'w', newline="", encoding="utf-8") as csvfile:
+			writer = csv.writer(csvfile)
+
+			if report_type == "詳細資料":
+				access_data = access.objects.all()
+
+				title = ["借閱館別","姓名","借用時間","歸還時間"]
+				writer.writerow(title)
+
+				for i in access_data:
+					# 如果在時間範圍之內
+					if i.lend_date.year >= int(start_year) and i.lend_date.year <= int(end_year)and i.lend_date.month >= int(start_date) and i.lend_date.month <= int(end_date):
+
+						lend_date = str(i.lend_date.year) + "-" + str(i.lend_date.month) + "-" + str(i.lend_date.day)
+						return_date = str(i.return_date.year) + "-" + str(i.return_date.month) + "-" + str(i.return_date.day)
+
+						output_data = [i.place, i.visitor_id.visitor_name, lend_date, return_date]
+						writer.writerow(output_data)
+					
+		file = open("./library/static/data/"+report_type + ".csv", 'rb')
+		response = HttpResponse(file)
+		response['Content-Type'] = 'application/octet-stream' #設定頭資訊，告訴瀏覽器這是個檔案
+		response['Content-Disposition'] = 'attachment;filename="./library/static/data/"+report_type + ".csv"'
+		return response
+
 	return render(request, 'report.html')

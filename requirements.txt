@@ -7,3 +7,4 @@ sqlparse==0.4.1
 typing-extensions==3.10.0.0
 utils==1.0.1
 wcwidth==0.2.5
+XlsxWriter==1.4.5
