@@ -29,7 +29,7 @@
 <h1>報表介面</h1>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
-	<select name="report" onchange="ChangeOption()">
+	<select name="report" id="report" onchange="ChangeOption()">
 		<option>詳細資料</option>
 		<option>借還人次</option>
 	</select>
@@ -38,7 +38,7 @@
 		<input type="text" name="start_year">
 		<input type="text" name="end_year">
 		<select name="start_date">
-			<option>---</option>
+			<option></option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
@@ -54,7 +54,7 @@
 		</select>
 
 		<select name="end_date">
-			<option>---</option>
+			<option></option>
 			<option>1</option>
 			<option>2</option>
 			<option>3</option>
@@ -72,7 +72,7 @@
 	<!-- 借還人次 -->
 	<div style="visibility: hidden; display: none;" id="Times">
 		<select name="library">
-			<option>---</option>
+			<option></option>
 			<option>濟時樓</option>
 			<option>公博樓</option>
 			<option>國璽樓</option>
