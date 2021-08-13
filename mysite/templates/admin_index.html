@@ -1,9 +1,14 @@
-{% include 'base.html' %}
+{% include 'index.html' %}
 
 {% block title %}
 <title>管理員介面</title>
 {% endblock %}
-<h1>管理員介面</h1>
-<button onclick="window.location.href = '/register/'">借用</button>
-<button onclick="window.location.href = '/return/'">歸還</button>
-<button onclick="window.location.href = '/report/'">報表下載</button>
+<div style="text-align: center;">
+    <h1>管理員介面</h1>
+    <div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto;">
+    </div>
+    <p></p>
+    <button onclick="window.location.href = '/register/'">借用</button>
+    <button onclick="window.location.href = '/return/'">歸還</button>
+    <button onclick="window.location.href = '/report/'">報表下載</button>
+</div>
