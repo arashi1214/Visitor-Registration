@@ -1,4 +1,4 @@
-{% include 'base.html' %}
+{% include 'index.html' %}
 
 {% block title %}
 <title>註冊</title>
@@ -6,16 +6,23 @@
 
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
-	<div class="form-group">
-		<div class="form-group col-md-6">
+	<div style="display: flex;">
+		<div style="margin: auto;">
+			<h2>外賓註冊</h2>
+		</div>
+	</div>
+	
+	<div class="form-group" style="display: flex;">
+		<div class="form-group col-md-6" style="margin: auto; border: 2px black solid; padding: 10px; position: relative;">
 			<div onchange="CheckVisitorId()"><p>身分證字號：{{ form.visitor_id }}</p></div>
 			<p>名稱：{{ form.visitor_name }}</p>
 			<p>校友證字號：{{ form.Alumni_id }}</p>
 			<p>連絡電話：{{ form.phone_num }}</p>
 			<p>電子郵件：{{ form.email }}</p>
+			<h6 style="color: rgba(117, 108, 108, 0.7); text-indent: 5em;">*請填常用信箱避免接收不到驗證信件</h6>
 			<p>{{ errmsg }}</p>
 
-			<p>住家地址</p>
+			<p>住家地址：</p>
 			<div>
 				<input type="text" required="required" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
 				<datalist id="home_cities">
@@ -28,7 +35,7 @@
 				<input type="text" required="required" name="home_address" id="ha3">
 			</div>
 
-			<p>通訊地址</p>
+			<p>通訊地址：</p>
 			<div>
 				<input type="text" required="required" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
 				<datalist id="mail_cities">
@@ -39,9 +46,10 @@
 				</datalist>
 				<input type="text" required="required" name="mail_address" id="ma3">
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
+				
 			</div>
-
-			<input class="btn btn-success" type="submit" value="註冊" />
+			<input class="btn btn-success" type="submit" value="註冊" style="position: absolute; bottom:10px; right:50px;"/>
+			
 		</div>
 	</div>
 </form>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
+
+    {% block title %}
+    {% endblock %}
+
+</head>
+
+<body>
+    <!--System Logo-->
+    <div id="logo">
+        <img src="/static/assect/Logo.png" height="150px">
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-{% include 'base.html' %}
+{% include 'index.html' %}
 
 {% block title %}
 <title>讀者介面</title>
@@ -9,8 +9,10 @@
 		alert('{{ message }}');
 	}
 </script>
-
-
-<h1>讀者介面</h1>
-<button onclick="window.location.href='/sign_in/'">註冊</button>
-<button onclick="window.location.href='/send_revise_email/'">修改資料</button>
+<div style="text-align: center;">
+	<h1>讀者介面</h1>
+	<div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto;"></div>
+	<p></p>
+	<button onclick="window.location.href='/sign_in/'">註冊</button>
+	<button onclick="window.location.href='/send_revise_email/'">修改資料</button>
+</div>
