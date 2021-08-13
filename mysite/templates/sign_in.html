@@ -3,7 +3,12 @@
 {% block title %}
 <title>註冊</title>
 {% endblock %}
-
+<script>
+	console.log('{{ errmsg }}')
+	if ('{{ errmsg }}' != ""){
+		alert('{{ errmsg }}');
+	}
+</script>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div style="display: flex;">
@@ -20,7 +25,6 @@
 			<p>連絡電話：{{ form.phone_num }}</p>
 			<p>電子郵件：{{ form.email }}</p>
 			<h6 style="color: rgba(117, 108, 108, 0.7); text-indent: 5em;">*請填常用信箱避免接收不到驗證信件</h6>
-			<p>{{ errmsg }}</p>
 
 			<p>住家地址：</p>
 			<div>
