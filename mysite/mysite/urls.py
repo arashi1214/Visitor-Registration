@@ -20,6 +20,7 @@ from django.conf.urls import include, url
 from library.views import sign_in, register, register_step2, Return, activate, detail, send_revise_email, revise_database, admin_index, user_index, report
 
 urlpatterns = [
+    url(r'^$', user_index),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('sign_in/', sign_in),
