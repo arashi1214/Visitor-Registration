@@ -26,6 +26,7 @@
     </div>
     <hr width="95%">
     <!--導覽列-->
+    {% if request.user.is_authenticated %}
     <div style="width:120px;height: 380px;text-align:center;line-height: 130px; float:left; background-color: #52B3D9;">
         <nav>
             <ui id="sidebar">
@@ -35,6 +36,7 @@
             </ui>
         </nav>
     </div>
+    {% endif %}
     <div style="border: 1px solid; float: left; height: 380px; color: #fff;"></div>
     <div style="border: 1px solid; float: left; height: 380px; color: #EEEE;"></div>
     {% block content %}
