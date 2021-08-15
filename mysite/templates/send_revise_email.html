@@ -5,8 +5,10 @@
 
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
-	<div>
-		<p>請輸入您的身分證字號<input type="text" name="visitor_id"></p>
+	<div class="form-group" style="display: flex;">
+		<div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative;">
+			<p>請輸入您的身分證字號<input type="text" name="visitor_id"></p>
+			<input class="btn btn-success" type="submit" value="送出" />
+		</div>
 	</div>
-	<input class="btn btn-success" type="submit" value="送出" />
 </form>

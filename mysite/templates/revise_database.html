@@ -3,6 +3,11 @@
 {% block title %}
 <title>修改資料</title>
 {% endblock %}
+<script>
+	window.onload = function () {
+		LoadData();
+	}
+</script>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div class="form-group">

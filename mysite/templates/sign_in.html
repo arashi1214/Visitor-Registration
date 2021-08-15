@@ -1,4 +1,4 @@
-{% include 'index.html' %}
+{% include 'base.html' %}
 
 {% block title %}
 <title>註冊</title>
@@ -7,6 +7,10 @@
 	console.log('{{ errmsg }}')
 	if ('{{ errmsg }}' != ""){
 		alert('{{ errmsg }}');
+	}
+
+	window.onload = function () {
+		LoadData();
 	}
 </script>
 <form method="POST" autocomplete="off">

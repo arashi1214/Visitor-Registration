@@ -463,7 +463,3 @@ function CheckVisitorId(){
 		id_input.style.backgroundColor = "white";
 	}
 }
-
-window.onload = function () {
-	LoadData();
-}
