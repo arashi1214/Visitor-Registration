@@ -15,6 +15,7 @@ class SignInForm(forms.ModelForm):
 		# 設定表單的顯示外觀
 		widgets = {
 			'visitor_id': forms.TextInput(attrs={'style': 'background-color:white'}),
+			'email': forms.TextInput(attrs={'placeholder': "請填常用信箱避免接收不到驗證信件"})
 		}
 
 		#設定表單的顯示欄位名稱

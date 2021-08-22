@@ -5,7 +5,7 @@
 {% endblock %}
 <script>
 	console.log('{{ errmsg }}')
-	if ('{{ errmsg }}' != ""){
+	if ('{{ errmsg }}' != "") {
 		alert('{{ errmsg }}');
 	}
 
@@ -13,6 +13,58 @@
 		LoadData();
 	}
 </script>
+<style>
+	.test {
+		height: 50px;
+		width: 70%;
+		font-size: 15px;
+	}
+
+	#id_visitor_id {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+		left: 20%;
+	}
+
+	#id_visitor_name {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+		left: 20%;
+	}
+
+	#id_Alumni_id {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+		left: 20%;
+	}
+
+	#id_phone_num {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+		left: 20%;
+	}
+
+	#id_email {
+		display: inline-block;
+		position: absolute;
+		width: 45%;
+		left: 20%;
+	}
+
+	.test1 {
+		height: 70px;
+		font-size: 15px;
+	}
+
+	.btn {
+		position: absolute;
+		right: 10%;
+	}
+</style>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div style="display: flex;">
@@ -20,19 +72,34 @@
 			<h2>外賓註冊</h2>
 		</div>
 	</div>
-	
-	<div class="form-group" style="display: flex;">
-		<div class="form-group col-md-6" style="margin: auto; border: 2px black solid; padding: 10px; position: relative;">
-			<div onchange="CheckVisitorId()"><p>身分證字號：{{ form.visitor_id }}</p></div>
-			<p>名稱：{{ form.visitor_name }}</p>
-			<p>校友證字號：{{ form.Alumni_id }}</p>
-			<p>連絡電話：{{ form.phone_num }}</p>
-			<p>電子郵件：{{ form.email }}</p>
-			<h6 style="color: rgba(117, 108, 108, 0.7); text-indent: 5em;">*請填常用信箱避免接收不到驗證信件</h6>
 
-			<p>住家地址：</p>
-			<div>
-				<input type="text" required="required" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1">
+	<div class="form-group" style="display: flex;">
+		<div class="form-group col-md-6"
+			style="margin: auto; border: 2px black solid; padding: 10px; position: relative;">
+			<div class="test" onchange="CheckVisitorId()">
+				<label for="id_visitor_id">身分證字號</label>{{ form.visitor_id }}
+			</div>
+
+			<div class="test">
+				<label for="id_visitor_name">姓名</label>{{ form.visitor_name }}
+			</div>
+
+			<div class="test">
+				<label for="id_Alumni_id">校友證字號</label>{{ form.Alumni_id }}
+			</div>
+
+			<div class="test">
+				<label for="id_phone_num">連絡電話</label>{{ form.phone_num }}
+			</div>
+
+			<div class="test">
+				<label for="id_email">電子郵件</label>{{ form.email }}
+			</div>
+
+			<div class="test1">
+				<label>住家地址</label><br>
+				<input type="text" required="required" name="home_address_city" list="home_cities"
+					onchange="UpdateData('home')" id="ha1">
 				<datalist id="home_cities">
 				</datalist>
 
@@ -43,21 +110,24 @@
 				<input type="text" required="required" name="home_address" id="ha3">
 			</div>
 
-			<p>通訊地址：</p>
-			<div>
-				<input type="text" required="required" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1">
+
+			<div class="test1">
+				<label>通訊地址</label><br>
+				<input type="text" required="required" name="mail_address_city" list="mail_cities"
+					onchange="UpdateData('mail')" id="ma1">
 				<datalist id="mail_cities">
 				</datalist>
 
 				<input type="text" required="required" name="mail_address_area" list="mail_areas" id="ma2">
 				<datalist id="mail_areas">
 				</datalist>
-				<input type="text" required="required" name="mail_address" id="ma3">
+				<input type="text" required="required" name="mail_address" id="ma3"><br>
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
-				
+
 			</div>
-			<input class="btn btn-success" type="submit" value="註冊" style="position: absolute; bottom:10px; right:50px;"/>
-			
+			<div class="test">
+				<input class="btn btn-success" type="submit" value="註冊" />
+			</div>
 		</div>
 	</div>
 </form>
