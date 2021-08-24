@@ -3,25 +3,48 @@
 {% block title %}
 <title>修改資料</title>
 {% endblock %}
+
 <script>
 	window.onload = function () {
 		LoadData();
 	}
 </script>
+
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
-	<div class="form-group">
-		<div class="form-group col-md-6">
+	<div style="display: flex;">
+		<div style="margin: auto;">
+			<h2>資料修改</h2>
+		</div>
+	</div>
 
-			<p>名稱：<input type="text" name="visitor_name" value="{{ user.visitor_name }}"></p>
-			<p>校友證字號：<input type="text" name="Alumni_id" value="{{ user.Alumni_id }}"></p>
-			<p>連絡電話：<input type="text" name="phone_num" value="{{ user.phone_num }}"></p>
-			<p>電子郵件：<input type="text" name="email" value="{{ user.email }}"></p>
-			<p>{{ errmsg }}</p>
+	<div class="form-group" style="display: flex;">
+		<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative;">
+			<div class="block">
+				<label for="id_visitor_name">姓名</label>
+				<input type="text" name="visitor_name" value="{{ user.visitor_name }}"></p>
+			</div>
 
-			<p>住家地址</p>
-			<div>
-				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1" value="{{ home_city }}">
+			<div class="block">
+				<label for="id_Alumni_id">校友證字號</label>
+				<input type="text" name="Alumni_id" value="{{ user.Alumni_id }}">
+			</div>
+
+			<div class="block">
+				<label for="id_Alumni_id">連絡電話</label>
+				<input type="text" name="phone_num" value="{{ user.phone_num }}">
+			</div>
+
+			<div class="block">
+				<label for="id_Alumni_id">連絡電話</label>
+				<input type="text" name="email" value="{{ user.email }}">
+				<p>{{ errmsg }}</p>
+			</div>
+
+			<div class="block-2">
+				<label>住家地址</label><br>
+				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1"
+					value="{{ home_city }}">
 				<datalist id="home_cities">
 				</datalist>
 
@@ -32,20 +55,24 @@
 				<input type="text" name="home_address" id="ha3" value="{{ home_road }}">
 			</div>
 
-			<p>通訊地址</p>
-			<div>
-				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1" value="{{ connect_city }}">
+			<div class="block-2">
+				<label>通訊地址</label><br>
+				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1"
+					value="{{ connect_city }}">
 				<datalist id="mail_cities">
 				</datalist>
 
 				<input type="text" name="mail_address_area" list="mail_areas" id="ma2" value="{{ connect_area }}">
 				<datalist id="mail_areas">
 				</datalist>
-				<input type="text" name="mail_address" id="ma3" value="{{ connect_road }}">
+				<input type="text" name="mail_address" id="ma3" value="{{ connect_road }}"><br>
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
+
 			</div>
 
-			<input class="btn btn-success" type="submit" value="修正" />
+			<div class="block-2">
+				<input class="btn btn-success" type="submit" value="修正" />
+			</div>
 		</div>
 	</div>
 </form>

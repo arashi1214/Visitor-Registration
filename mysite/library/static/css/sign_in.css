@@ -5,6 +5,14 @@
     font-size: 15px;
 }
 
+.block label {
+    width: 100px;
+}
+
+.block input {
+    width: 100%;
+}
+
 .block-2 {
     margin: 20px 0px;
     height: auto;
@@ -12,12 +20,8 @@
     font-size: 15px;
 }
 
-
-
-.block label {
-    width: 100px;
-}
-
-.block input {
-    width: 100%;
+.block-3 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

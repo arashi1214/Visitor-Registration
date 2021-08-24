@@ -9,14 +9,13 @@ body {
   background-color: #fff;
 }
 
-#sidebar{
+#sidebar {
   color: #52B3D9;
-  background-color:#52B3D9 ;
+  background-color: #52B3D9 ;
   display: flex;
   justify-content: space-evenly;
-  text-align:center;
-  line-height:35px;
-
+  text-align: center;
+  line-height: 35px;
 }
 
 #logo {
@@ -44,11 +43,11 @@ nav li {
 
 nav a{
   color: inherit;
-  display:block ;
+  display: block ;
   text-decoration: none;
 }
 
-nav a:hover{
+nav a:hover {
   background-color: #245779;
 }
 
