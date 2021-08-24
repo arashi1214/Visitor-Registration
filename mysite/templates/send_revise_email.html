@@ -2,6 +2,11 @@
 {% block title %}
 <title>發送修改確認信</title>
 {% endblock %}
+<script>
+    window.onload = function () {
+		CheckWeb();
+	}
+</script>
 
 <form method="POST" autocomplete="off">
 	{% csrf_token %}

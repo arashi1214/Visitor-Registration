@@ -463,3 +463,10 @@ function CheckVisitorId(){
 		id_input.style.backgroundColor = "white";
 	}
 }
+
+function CheckWeb(){
+	if(location.href.split('/')[3] == "user" || location.href == "http://127.0.0.1:8000/"){
+        document.getElementById("admin_navbar").style.visibility="hidden";
+        document.getElementById("admin_navbar").style.display="none";
+    }
+}

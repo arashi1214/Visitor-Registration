@@ -23,15 +23,15 @@ urlpatterns = [
     url(r'^$', user_index),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('sign_in/', sign_in),
+    path('user/sign_in/', sign_in),
     path('admin_index/', admin_index),
-    path('user_index/', user_index),
+    path('user/user_index/', user_index),
     path('register/', register),
     re_path(r'register/step2/', register_step2),
     path('return/', Return),
     path('report/', report),
     path(r'activate/', activate),
-    path('send_revise_email/', send_revise_email),
+    path('user/send_revise_email/', send_revise_email),
     path(r'revise_database/', revise_database),
     re_path(r'^return/(?P<pk>[0-9]+)/detail/$', detail)
 ]
