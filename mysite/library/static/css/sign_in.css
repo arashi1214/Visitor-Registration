@@ -2,11 +2,11 @@
     margin: 20px 0px;
     height: auto;
     width: auto;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .block label {
-    width: 100px;
+    width: auto;
 }
 
 .block input {
@@ -17,11 +17,15 @@
     margin: 20px 0px;
     height: auto;
     width: auto;
-    font-size: 15px;
+    font-size: 17px;
 }
 
-.block-3 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+#ha3 {
+    width: 100%;
+    margin: 5px 0 0 0;
+}
+
+#ma3 {
+    width: 100%;
+    margin: 5px 0 0 0;
 }

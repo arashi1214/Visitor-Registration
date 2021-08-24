@@ -3,12 +3,16 @@
 {% block title %}
 <title>訪客證登記</title>
 {% endblock %}
+<div style="display: flex;">
+    <div style="margin: auto;">
+        <h1>借用者資訊確認</h1>
+    </div>
+</div>
 <form action="" method="POST">
     {% csrf_token %}
-    <div class="form-group">
-        <div class="form-group col-md-6">
+    <div class="form-group" style="display: flex;">
+        <div class="form-group">
             <div style="margin-left: 55%; width:500px;">
-                <h1>借用者資訊確認</h1>
                 <div style="font-size: medium; text-indent: 2em;">
                     <p>姓名：{{ person.visitor_name }}</p>
                     <p>身分證：{{ person.visitor_id }}</p>

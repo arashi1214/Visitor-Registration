@@ -5,18 +5,22 @@
 {% endblock %}
 <script>
 	console.log('{{ message }}')
-	if ('{{ message }}' != ""){
+	if ('{{ message }}' != "") {
 		alert('{{ message }}');
 	}
-    
-    window.onload = function () {
+
+	window.onload = function () {
 		CheckWeb();
 	}
 </script>
-<div style="text-align: center;">
-	<h1>讀者介面</h1>
-	<div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto;"></div>
-	<p></p>
-	<button onclick="window.location.href='/user/sign_in/'">註冊</button>
-	<button onclick="window.location.href='/user/send_revise_email/'">修改資料</button>
+
+<div style="display: flex; flex-direction: column;">
+	<div style="margin: auto;">
+		<h1>讀者介面</h1>
+	</div>
+	<div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto; position: relative;"></div>
+</div>
+<div style="display: flex; justify-content: center; margin: 10px 0;">
+	<button onclick="window.location.href='/user/sign_in/'" style="margin: 0 20px 0 0; font-size: 15px;">註冊</button>
+	<button onclick="window.location.href='/user/send_revise_email/'" style="font-size: 15px;">修改資料</button>
 </div>

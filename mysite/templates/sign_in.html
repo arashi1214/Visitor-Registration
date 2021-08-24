@@ -20,12 +20,12 @@
 	{% csrf_token %}
 	<div style="display: flex;">
 		<div style="margin: auto;">
-			<h2>訪客註冊</h2>
+			<h1>訪客註冊</h1>
 		</div>
 	</div>
 
 	<div class="form-group" style="display: flex;">
-		<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative;">
+		<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
 			<div class="block" onchange="CheckVisitorId()">
 				<label for="id_visitor_id">身分證字號</label>{{ form.visitor_id }}
 			</div>
@@ -47,50 +47,32 @@
 			</div>
 
 			<div class="block-2">
-				<label>住家地址</label>
-				<div class="block-3">
-					<div class="item">
-						<input type="text" required="required" name="home_address_city" list="home_cities"
-							onchange="UpdateData('home')" id="ha1">
-						<datalist id="home_cities">
-						</datalist>
-					</div>
-					<div class="item-2">
-						<input type="text" required="required" name="home_address_area" list="home_areas" id="ha2">
-						<datalist id="home_areas">
-						</datalist>
-					</div>
-					<div class="item">
-						<input type="text" required="required" name="home_address" id="ha3">
-					</div>
-				</div>
+				<label>住家地址</label><br>
+				<input type="text" required="required" name="home_address_city" list="home_cities"
+					onchange="UpdateData('home')" id="ha1">
+				<datalist id="home_cities">
+				</datalist>
+				<input type="text" required="required" name="home_address_area" list="home_areas" id="ha2">
+				<datalist id="home_areas">
+				</datalist>
+				<br><input type="text" required="required" name="home_address" id="ha3">
 			</div>
 
-
 			<div class="block-2">
-				<label>通訊地址</label>
-				<div class="block-3">
-					<div class="item">
-						<input type="text" required="required" name="mail_address_city" list="mail_cities"
-							onchange="UpdateData('mail')" id="ma1" class="short-input">
-						<datalist id="mail_cities">
-						</datalist>
-					</div>
-					<div class="item-2">
-						<input type="text" required="required" name="mail_address_area" list="mail_areas" id="ma2"
-							class="short-input">
-						<datalist id="mail_areas">
-						</datalist>
-					</div>
-					<div class="item">
-						<input type="text" required="required" name="mail_address" id="ma3">
-					</div>
-				</div>
+				<label>通訊地址</label><br>
+				<input type="text" required="required" name="mail_address_city" list="mail_cities"
+					onchange="UpdateData('mail')" id="ma1">
+				<datalist id="mail_cities">
+				</datalist>
+				<input type="text" required="required" name="mail_address_area" list="mail_areas" id="ma2">
+				<datalist id="mail_areas">
+				</datalist>
+				<br><input type="text" required="required" name="mail_address" id="ma3"><br>
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
 			</div>
 
 			<div class="block-2">
-				<input class="btn btn-success" type="submit" value="註冊" />
+				<input id="botton" class="btn btn-success" type="submit" value="註冊" />
 			</div>
 		</div>
 	</div>

@@ -3,17 +3,27 @@
 <title>發送修改確認信</title>
 {% endblock %}
 <script>
-    window.onload = function () {
+	window.onload = function () {
 		CheckWeb();
 	}
 </script>
 
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
+	<div style="display: flex;">
+		<div style="margin: auto;">
+			<h1>資料修改</h1>
+		</div>
+	</div>
 	<div class="form-group" style="display: flex;">
-		<div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative;">
-			<p>請輸入您的身分證字號<input type="text" name="visitor_id"></p>
-			<input class="btn btn-success" type="submit" value="送出" />
+		<div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative; width: auto;">
+			<div class="block">
+				<label>請輸入您的身分證字號</label><br>
+				<input type="text" name="visitor_id"></p>
+			</div>
+			<div class="block-2">
+				<input class="btn btn-success" type="submit" value="送出" />
+			</div>
 		</div>
 	</div>
 </form>

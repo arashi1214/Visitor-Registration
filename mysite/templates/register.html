@@ -3,17 +3,30 @@
 {% block title %}
 <title>訪客證登記</title>
 {% endblock %}
-<div style="margin-left: 45%;">
-    <h1>訪客證登記</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <div class="form-group col-md-6" style="font-size: medium; margin: 0px auto; text-indent: 2em;">
-                <p>身分證：<input name="visitor_id"></p>
-                <p>校友證：<input name="Alumni_id"></p>
-                <p>{{ person_status }}</p>
-                <p><input class="btn btn-success" type="submit" value="下一步"></p>
+<div style="display: flex;">
+    <div style="margin: auto;">
+        <h1>訪客證登記</h1>
+    </div>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-group" style="display: flex;">
+        <div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
+            <div class="block">
+                <label>身分證</label>
+                <input name="visitor_id">
+            </div>
+
+            <div class="block">
+                <label>校友證</label>
+                <input name="Alumni_id">
+
+            </div>
+
+            <div class="block-2">
+                <p style="color: red;">{{ person_status }}</p>
+                <input class="btn btn-success" type="submit" value="下一步">
             </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>

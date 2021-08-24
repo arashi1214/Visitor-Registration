@@ -3,12 +3,14 @@
 {% block title %}
 <title>管理員介面</title>
 {% endblock %}
-<div style="text-align: center;">
-    <h1>管理員介面</h1>
-    <div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto;">
+<div style="display: flex; flex-direction: column;">
+    <div style="margin: auto;">
+        <h1>管理員介面</h1>
     </div>
-    <p></p>
-    <button onclick="window.location.href = '/register/'">借用</button>
-    <button onclick="window.location.href = '/return/'">歸還</button>
-    <button onclick="window.location.href = '/report/'">報表下載</button>
+    <div style="background-color: gray; width: 400px; height: 300px; margin: 0px auto; position: relative;"></div>
+</div>
+<div style="display: flex; justify-content: center; margin: 10px 0;">
+    <button onclick="window.location.href = '/register/'" style="font-size: 15px;">借用</button>
+    <button onclick="window.location.href = '/return/'" style="margin: 0 20px; font-size: 15px;">歸還</button>
+    <button onclick="window.location.href = '/report/'" style="font-size: 15px;">報表下載</button>
 </div>
