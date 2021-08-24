@@ -6,77 +6,89 @@
 {% endblock %}
 
 <script type="text/javascript">
-	function ChangeOption(){
+	function ChangeOption() {
 		type = document.getElementById("report").value;
-		if(type == "詳細資料"){
-			document.getElementById("Times").style.visibility="hidden";
-			document.getElementById("Times").style.display="none";
+		if (type == "詳細資料") {
+			document.getElementById("Times").style.visibility = "hidden";
+			document.getElementById("Times").style.display = "none";
 
-			document.getElementById("Details").style.visibility="visible";
-			document.getElementById("Details").style.display="";
+			document.getElementById("Details").style.visibility = "visible";
+			document.getElementById("Details").style.display = "";
 
-		}else if(type == "借還人次"){
-			document.getElementById("Details").style.visibility="hidden";
-			document.getElementById("Details").style.display="none";
+		} else if (type == "借還人次") {
+			document.getElementById("Details").style.visibility = "hidden";
+			document.getElementById("Details").style.display = "none";
 
-			document.getElementById("Times").style.visibility="visible";
-			document.getElementById("Times").style.display="";
+			document.getElementById("Times").style.visibility = "visible";
+			document.getElementById("Times").style.display = "";
 		}
 	}
 </script>
 
+<div style="display: flex;">
+	<div style="margin: auto;">
+		<h1>報表介面</h1>
+	</div>
+</div>
 
-<h1>報表介面</h1>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
-	<select name="report" id="report" onchange="ChangeOption()">
-		<option>詳細資料</option>
-		<option>借還人次</option>
-	</select>
-	<!-- 詳細資料 -->
-	<div style="visibility: visible;" id="Details">
-		<input type="text" name="start_year">
-		<input type="text" name="end_year">
-		<select name="start_date">
-			<option></option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-			<option>10</option>
-			<option>11</option>
-			<option>12</option>
-		</select>
+	<div style="display: flex;">
+		<div style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: auto;">
+			<div class="block">
+				<select name="report" id="report" onchange="ChangeOption()">
+					<option>詳細資料</option>
+					<option>借還人次</option>
+				</select>
+			</div>
+			<!-- 詳細資料 -->
+			<div style="visibility: visible;" id="Details">
+				<input type="text" name="start_year">
+				<input type="text" name="end_year">
+				<select name="start_date">
+					<option></option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
 
-		<select name="end_date">
-			<option></option>
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-			<option>10</option>
-			<option>11</option>
-			<option>12</option>
-		</select>
+				<select name="end_date">
+					<option></option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+			</div>
+			<!-- 借還人次 -->
+			<div style="visibility: hidden; display: none;" id="Times">
+				<select name="library">
+					<option></option>
+					<option>濟時樓</option>
+					<option>公博樓</option>
+					<option>國璽樓</option>
+				</select>
+			</div>
+			<div class="block-2">
+				<input class="btn btn-success" type="submit" value="匯出" />
+			</div>
+		</div>
 	</div>
-	<!-- 借還人次 -->
-	<div style="visibility: hidden; display: none;" id="Times">
-		<select name="library">
-			<option></option>
-			<option>濟時樓</option>
-			<option>公博樓</option>
-			<option>國璽樓</option>
-		</select>
-	</div>
-	<input class="btn btn-success" type="submit" value="匯出" />
 </form>
