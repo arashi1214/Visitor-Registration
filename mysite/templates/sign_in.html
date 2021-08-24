@@ -14,58 +14,7 @@
 		CheckWeb();
 	}
 </script>
-<style>
-	.test {
-		height: 50px;
-		width: 70%;
-		font-size: 15px;
-	}
 
-	#id_visitor_id {
-		display: inline-block;
-		position: absolute;
-		width: 45%;
-		left: 20%;
-	}
-
-	#id_visitor_name {
-		display: inline-block;
-		position: absolute;
-		width: 45%;
-		left: 20%;
-	}
-
-	#id_Alumni_id {
-		display: inline-block;
-		position: absolute;
-		width: 45%;
-		left: 20%;
-	}
-
-	#id_phone_num {
-		display: inline-block;
-		position: absolute;
-		width: 45%;
-		left: 20%;
-	}
-
-	#id_email {
-		display: inline-block;
-		position: absolute;
-		width: 45%;
-		left: 20%;
-	}
-
-	.test1 {
-		height: 70px;
-		font-size: 15px;
-	}
-
-	.btn {
-		position: absolute;
-		right: 10%;
-	}
-</style>
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div style="display: flex;">
@@ -75,29 +24,28 @@
 	</div>
 
 	<div class="form-group" style="display: flex;">
-		<div class="form-group col-md-6"
-			style="margin: auto; border: 2px black solid; padding: 10px; position: relative;">
-			<div class="test" onchange="CheckVisitorId()">
+		<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative;">
+			<div class="block" onchange="CheckVisitorId()">
 				<label for="id_visitor_id">身分證字號</label>{{ form.visitor_id }}
 			</div>
 
-			<div class="test">
+			<div class="block">
 				<label for="id_visitor_name">姓名</label>{{ form.visitor_name }}
 			</div>
 
-			<div class="test">
+			<div class="block">
 				<label for="id_Alumni_id">校友證字號</label>{{ form.Alumni_id }}
 			</div>
 
-			<div class="test">
+			<div class="block">
 				<label for="id_phone_num">連絡電話</label>{{ form.phone_num }}
 			</div>
 
-			<div class="test">
+			<div class="block">
 				<label for="id_email">電子郵件</label>{{ form.email }}
 			</div>
 
-			<div class="test1">
+			<div class="block-2">
 				<label>住家地址</label><br>
 				<input type="text" required="required" name="home_address_city" list="home_cities"
 					onchange="UpdateData('home')" id="ha1">
@@ -112,7 +60,7 @@
 			</div>
 
 
-			<div class="test1">
+			<div class="block-2">
 				<label>通訊地址</label><br>
 				<input type="text" required="required" name="mail_address_city" list="mail_cities"
 					onchange="UpdateData('mail')" id="ma1">
@@ -126,7 +74,8 @@
 				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
 
 			</div>
-			<div class="test">
+
+			<div class="block-2">
 				<input class="btn btn-success" type="submit" value="註冊" />
 			</div>
 		</div>

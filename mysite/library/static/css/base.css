@@ -29,7 +29,8 @@ log {
   right: 50px;
 }
 
-log a{
+log a {
+  font-size: 15px;
   color: inherit;
   text-decoration: none;
 }

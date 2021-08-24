@@ -1,0 +1,23 @@
+.block {
+    margin: 20px 0px;
+    height: auto;
+    width: auto;
+    font-size: 15px;
+}
+
+.block-2 {
+    margin: 20px 0px;
+    height: auto;
+    width: auto;
+    font-size: 15px;
+}
+
+
+
+.block label {
+    width: 100px;
+}
+
+.block input {
+    width: 100%;
+}
