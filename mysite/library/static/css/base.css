@@ -13,6 +13,7 @@ body {
   color: #52B3D9;
   background-color: #52B3D9 ;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
   line-height: 35px;
@@ -39,6 +40,8 @@ nav li {
   margin: 0;
   padding: 0;
   background-color: #52B3D9;
+  height: 120px;
+  line-height: 120px;
 }
 
 nav a{
@@ -49,6 +52,7 @@ nav a{
 
 nav a:hover {
   background-color: #245779;
+  height: 120px;
 }
 
 .block {
