@@ -86,3 +86,7 @@ nav a:hover {
 p {
     font-size: 17px;
 }
+
+#logo {
+  margin: 10px 0px 0px 10px;
+}
