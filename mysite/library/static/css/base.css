@@ -35,6 +35,21 @@ log a {
   text-decoration: none;
 }
 
+hr.line {
+  margin: 10px;
+}
+
+#admin_navbar {
+  margin: 0 10px;
+  width: 120px;
+  height: 100%;
+  text-align: center;
+  float: left;
+  background-color: #52B3D9;
+  visibility: visible;
+  display:'';
+}
+
 nav li {
   list-style: none;
   margin: 0;
@@ -50,9 +65,15 @@ nav a{
   text-decoration: none;
 }
 
+li a{
+  color: #ffff;
+  font-size: 15px;
+}
+
 nav a:hover {
   background-color: #245779;
   height: 120px;
+  color: #fff;
 }
 
 .block {

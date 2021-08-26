@@ -9,12 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
     <script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
-    
-    <script>
-        window.onload = function () {
-            CheckWeb();
-        }
-    </script>
+
     {% block title %}
     {% endblock %}
 
@@ -30,28 +25,23 @@
         <log><a href="/admin/login/?next=/admin/">登入</a></log>
         {% endif %}
     </div>
-    <hr width="95%">
+    <hr class="line">
     <!--導覽列-->
     {% if request.user.is_authenticated %}
-    <div style="width: 120px; height: 100%; text-align: center; float: left; background-color: #52B3D9; visibility: visible; display:'';"
-        id="admin_navbar">
+    <div id="admin_navbar">
         <nav>
             <ui id="sidebar">
-                <li><a href="../register" style="color: #ffff;">訪客證登記</a>
+                <li><a href="../register">訪客證登記</a>
                 </li>
-                <li><a href="../return" style="color: #ffff;">歸還訪客證</a></li>
-                <li><a href="../report" style="color: #ffff;">報表</a></li>
+                <li><a href="../return">歸還訪客證</a></li>
+                <li><a href="../report">報表</a></li>
             </ui>
         </nav>
     </div>
     {% endif %}
-    <div style="border: 1px solid; float: left; height: 360px; color: #fff;"></div>
     <div style="border: 1px solid; float: left; height: 360px; color: #EEEE;"></div>
-
-    <div id="main">
-        {% block content %}
-        {% endblock %}
-    </div>
+    {% block content %}
+    {% endblock %}
 
     <footer class="footer">©2021</footer>
 </body>
