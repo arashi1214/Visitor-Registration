@@ -54,7 +54,7 @@ def sign_in(request):
 		# 寄送email
 		subject, from_email, to = '信箱驗證', 'blackcat.in.the.midnight@gmail.com', email
 		text_content = 'This is an important message.'
-		html_content = '<p><a href="http://127.0.0.1:8000/activate/?token=' + token + '">驗證</a></p>'
+		html_content = '<p><a href="http://127.0.0.1:8000/user/activate/?token=' + token + '">驗證</a></p>'
 		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 		msg.attach_alternative(html_content, "text/html")
 		msg.send()
@@ -189,7 +189,7 @@ def send_revise_email(request):
 
 			subject, from_email, to = '資料修改', 'blackcat.in.the.midnight@gmail.com', user.email
 			text_content = 'This is an important message.'
-			html_content = '<p><a href="http://127.0.0.1:8000/revise_database/?token=' + token + '">修改</a></p>'
+			html_content = '<p><a href="http://127.0.0.1:8000/user/revise_database/?token=' + token + '">修改</a></p>'
 			msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()

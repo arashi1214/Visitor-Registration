@@ -30,8 +30,8 @@ urlpatterns = [
     re_path(r'register/step2/', register_step2),
     path('return/', Return),
     path('report/', report),
-    path(r'activate/', activate),
+    path(r'user/activate/', activate),
     path('user/send_revise_email/', send_revise_email),
-    path(r'revise_database/', revise_database),
+    path(r'user/revise_database/', revise_database),
     re_path(r'^return/(?P<pk>[0-9]+)/detail/$', detail)
 ]
