@@ -1,8 +1,10 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 <title>訪客證登記</title>
 {% endblock %}
+
+{% block content %}
 <div style="display: flex;">
     <div style="margin: auto;">
         <h1>訪客證登記</h1>
@@ -30,3 +32,4 @@
         </div>
     </div>
 </form>
+{% endblock %}

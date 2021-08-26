@@ -1,13 +1,10 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 {% block title %}
 <title>發送修改確認信</title>
-{% endblock %}
-<script>
-	window.onload = function () {
-		CheckWeb();
-	}
-</script>
 
+{% endblock %}
+
+{% block content %}
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div style="display: flex;">
@@ -28,3 +25,4 @@
 		</div>
 	</div>
 </form>
+{% endblock %}

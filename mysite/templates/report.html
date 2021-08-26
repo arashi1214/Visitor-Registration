@@ -1,9 +1,8 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 
 {% block title %}
 <title>報表介面</title>
-{% endblock %}
 
 <script type="text/javascript">
 	function ChangeOption() {
@@ -24,6 +23,7 @@
 		}
 	}
 </script>
+{% endblock %}
 
 {% block content %}
 <div style="display: flex;">

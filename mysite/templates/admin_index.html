@@ -1,14 +1,16 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 <title>管理員介面</title>
-{% endblock %}
+
 <script>
 	window.onload = function () {
 		CheckWeb();
 	}
 </script>
+{% endblock %}
 
+{% block content %}
 <div style="display: flex; flex-direction: column;">
     <div style="margin: auto;">
         <h1>管理員介面</h1>
@@ -20,3 +22,4 @@
     <button onclick="window.location.href = '/return/'" style="margin: 0 20px; font-size: 15px;">歸還</button>
     <button onclick="window.location.href = '/report/'" style="font-size: 15px;">報表下載</button>
 </div>
+{% endblock %}

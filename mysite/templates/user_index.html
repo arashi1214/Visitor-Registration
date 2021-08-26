@@ -1,19 +1,17 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 <title>讀者介面</title>
-{% endblock %}
+
 <script>
 	console.log('{{ message }}')
 	if ('{{ message }}' != "") {
 		alert('{{ message }}');
 	}
-
-	window.onload = function () {
-		CheckWeb();
-	}
 </script>
+{% endblock %}
 
+{% block content %}
 <div style="display: flex; flex-direction: column;">
 	<div style="margin: auto;">
 		<h1>讀者介面</h1>
@@ -24,3 +22,4 @@
 	<button onclick="window.location.href='/user/sign_in/'" style="margin: 0 20px 0 0; font-size: 15px;">註冊</button>
 	<button onclick="window.location.href='/user/send_revise_email/'" style="font-size: 15px;">修改資料</button>
 </div>
+{% endblock %}

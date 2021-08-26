@@ -1,9 +1,10 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 <title>訪客證歸還</title>
 {% endblock %}
 
+{% block content %}
 <form action="" method="POST">
     {% csrf_token %}
     <div style="display: flex;">
@@ -28,3 +29,4 @@
     </div>
 
 </form>
+{% endblock %}

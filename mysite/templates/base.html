@@ -9,7 +9,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
     <script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
-
+    
+    <script>
+        window.onload = function () {
+            CheckWeb();
+        }
+    </script>
     {% block title %}
     {% endblock %}
 
@@ -42,8 +47,11 @@
     {% endif %}
     <div style="border: 1px solid; float: left; height: 360px; color: #fff;"></div>
     <div style="border: 1px solid; float: left; height: 360px; color: #EEEE;"></div>
-    {% block content %}
-    {% endblock %}
+
+    <div id="main">
+        {% block content %}
+        {% endblock %}
+    </div>
 
     <footer class="footer">©2021</footer>
 </body>

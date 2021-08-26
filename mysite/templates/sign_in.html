@@ -1,20 +1,19 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
-<title>註冊</title>
+	<title>註冊</title>
+
+	<script>
+		console.log('{{ errmsg }}')
+		if ('{{ errmsg }}' != "") {
+			alert('{{ errmsg }}');
+		}
+
+		window.onload = function () {
+			LoadData();
+		}
+	</script>
 {% endblock %}
-
-<script>
-	console.log('{{ errmsg }}')
-	if ('{{ errmsg }}' != "") {
-		alert('{{ errmsg }}');
-	}
-
-	window.onload = function () {
-		LoadData();
-		CheckWeb();
-	}
-</script>
 
 {% block content %}
 <form method="POST" autocomplete="off">
