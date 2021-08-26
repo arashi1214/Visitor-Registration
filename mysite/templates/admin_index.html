@@ -1,8 +1,14 @@
-{% include 'index.html' %}
+{% include 'base.html' %}
 
 {% block title %}
 <title>管理員介面</title>
 {% endblock %}
+<script>
+	window.onload = function () {
+		CheckWeb();
+	}
+</script>
+
 <div style="display: flex; flex-direction: column;">
     <div style="margin: auto;">
         <h1>管理員介面</h1>

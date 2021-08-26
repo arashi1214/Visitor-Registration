@@ -16,6 +16,7 @@
 	}
 </script>
 
+{% block content %}
 <form method="POST" autocomplete="off">
 	{% csrf_token %}
 	<div style="display: flex;">
@@ -77,3 +78,4 @@
 		</div>
 	</div>
 </form>
+{% endblock %}
