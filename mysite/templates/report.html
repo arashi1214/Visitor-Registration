@@ -25,6 +25,7 @@
 	}
 </script>
 
+{% block content %}
 <div style="display: flex;">
 	<div style="margin: auto;">
 		<h1>報表介面</h1>
@@ -43,8 +44,9 @@
 			</div>
 			<!-- 詳細資料 -->
 			<div style="visibility: visible;" id="Details">
+				<p>請選擇指定時間範圍</p>
 				<input type="text" name="start_year">
-				<input type="text" name="end_year">
+				<p style="display: inline;">年</p>
 				<select name="start_date">
 					<option></option>
 					<option>1</option>
@@ -60,6 +62,10 @@
 					<option>11</option>
 					<option>12</option>
 				</select>
+				<p style="display: inline;">月至</p>
+				<p></p>
+				<input type="text" name="end_year">
+				<p style="display: inline;">年</p>
 
 				<select name="end_date">
 					<option></option>
@@ -76,9 +82,11 @@
 					<option>11</option>
 					<option>12</option>
 				</select>
+				<p style="display: inline;">月</p>
 			</div>
 			<!-- 借還人次 -->
 			<div style="visibility: hidden; display: none;" id="Times">
+				<p>請選擇圖書館</p>
 				<select name="library">
 					<option></option>
 					<option>濟時樓</option>
@@ -92,3 +100,4 @@
 		</div>
 	</div>
 </form>
+{% endblock %}

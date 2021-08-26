@@ -90,3 +90,9 @@ p {
 #logo {
   margin: 10px 0px 0px 10px;
 }
+
+.footer{
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+}
