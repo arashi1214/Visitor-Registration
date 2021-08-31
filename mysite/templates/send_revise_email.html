@@ -6,28 +6,30 @@
 		CheckWeb();
 	}
 </script>
-</script>
+
 {% endblock %}
 
 {% block content %}
-<form method="POST" autocomplete="off">
-	{% csrf_token %}
-	<div style="display: flex;">
-		<div style="margin: auto;">
-			<h1>資料修改</h1>
+<div class="wrapper">
+	<form method="POST" autocomplete="off">
+		{% csrf_token %}
+		<div style="display: flex;">
+			<div style="margin: auto;">
+				<h1>資料修改</h1>
+			</div>
 		</div>
-	</div>
 
-	<div class="form-group" style="display: flex;">
-		<div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative; width: auto;">
-			<div class="block">
-				<label>請輸入您的身分證字號</label><br>
-				<input type="text" name="visitor_id">
-			</div>
-			<div class="block-2">
-				<input class="btn btn-success" type="submit" value="送出" />
+		<div class="form-group" style="display: flex;">
+			<div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative; width: auto;">
+				<div class="block">
+					<label>請輸入您的身分證字號</label><br>
+					<input type="text" name="visitor_id">
+				</div>
+				<div class="block-2">
+					<input class="btn btn-success" type="submit" value="送出" />
+				</div>
 			</div>
 		</div>
-	</div>
-</form>
+	</form>
+</div>
 {% endblock %}
