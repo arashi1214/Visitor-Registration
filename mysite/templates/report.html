@@ -26,78 +26,80 @@
 {% endblock %}
 
 {% block content %}
-<div style="display: flex;">
-	<div style="margin: auto;">
-		<h1>報表介面</h1>
-	</div>
-</div>
-
-<form method="POST" autocomplete="off">
-	{% csrf_token %}
-	<div style="display: flex;">
-		<div style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: auto;">
-			<div class="block">
-				<select name="report" id="report" onchange="ChangeOption()">
-					<option>詳細資料</option>
-					<option>借還人次</option>
-				</select>
-			</div>
-			<!-- 詳細資料 -->
-			<div style="visibility: visible;" id="Details">
-				<p>請選擇指定時間範圍</p>
-				<input type="text" name="start_year">
-				<p style="display: inline;">年</p>
-				<select name="start_date">
-					<option></option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-					<option>8</option>
-					<option>9</option>
-					<option>10</option>
-					<option>11</option>
-					<option>12</option>
-				</select>
-				<p style="display: inline;">月至</p>
-				<p></p>
-				<input type="text" name="end_year">
-				<p style="display: inline;">年</p>
-
-				<select name="end_date">
-					<option></option>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-					<option>8</option>
-					<option>9</option>
-					<option>10</option>
-					<option>11</option>
-					<option>12</option>
-				</select>
-				<p style="display: inline;">月</p>
-			</div>
-			<!-- 借還人次 -->
-			<div style="visibility: hidden; display: none;" id="Times">
-				<p>請選擇圖書館</p>
-				<select name="library">
-					<option></option>
-					<option>濟時樓</option>
-					<option>公博樓</option>
-					<option>國璽樓</option>
-				</select>
-			</div>
-			<div class="block-2">
-				<input class="btn btn-success" type="submit" value="匯出" />
+	<div class="wrapper">
+		<div style="display: flex;">
+			<div style="margin: auto;">
+				<h1>報表介面</h1>
 			</div>
 		</div>
+
+		<form method="POST" autocomplete="off">
+			{% csrf_token %}
+			<div style="display: flex;">
+				<div style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: auto;">
+					<div class="block">
+						<select name="report" id="report" onchange="ChangeOption()">
+							<option>詳細資料</option>
+							<option>借還人次</option>
+						</select>
+					</div>
+					<!-- 詳細資料 -->
+					<div style="visibility: visible;" id="Details">
+						<p>請選擇指定時間範圍</p>
+						<input type="text" name="start_year">
+						<p style="display: inline;">年</p>
+						<select name="start_date">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+						<p style="display: inline;">月至</p>
+						<p></p>
+						<input type="text" name="end_year">
+						<p style="display: inline;">年</p>
+
+						<select name="end_date">
+							<option></option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+						<p style="display: inline;">月</p>
+					</div>
+					<!-- 借還人次 -->
+					<div style="visibility: hidden; display: none;" id="Times">
+						<p>請選擇圖書館</p>
+						<select name="library">
+							<option></option>
+							<option>濟時樓</option>
+							<option>公博樓</option>
+							<option>國璽樓</option>
+						</select>
+					</div>
+					<div class="block-2">
+						<input class="btn btn-success" type="submit" value="匯出" />
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
-</form>
 {% endblock %}

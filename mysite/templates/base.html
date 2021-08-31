@@ -10,28 +10,13 @@
 
     <script type="text/javascript" src="{% static 'js/visitor_data.js' %}"></script>
 
-    <style type="text/css">
-        html, body {
-          height: 90%; /*外層高度100%*/
-          margin: 0;
-        }
-        .wrapper {
-          min-height: calc(90% - 30px);
-        }
-        .footer{
-          height: 30px; /*設定footer本身高度*/
-          text-align:center
-        }
-    </style>
-
     {% block title %}
     {% endblock %}
 
 </head>
 
 <body>
-
-    <!--System Logo-->
+        <!--System Logo-->
     <div id="logo">
         <a href="http://127.0.0.1:8000/"><img src="/static/assect/Logo.png" height="150px"></a>
         {% if request.user.is_authenticated %}
@@ -58,7 +43,7 @@
     {% block content %}
     {% endblock %}
     <footer class="footer">
-        <div class="footer_text">©2021 外賓登記系統</div>
+        ©2021 外賓登記系統
     </footer>
 
 </body>

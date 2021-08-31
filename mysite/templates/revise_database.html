@@ -12,70 +12,72 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" autocomplete="off">
-	{% csrf_token %}
-	<div style="display: flex;">
-		<div style="margin: auto;">
-			<h2>資料修改</h2>
-		</div>
+    <div class="wrapper">
+		<form method="POST" autocomplete="off">
+			{% csrf_token %}
+			<div style="display: flex;">
+				<div style="margin: auto;">
+					<h2>資料修改</h2>
+				</div>
+			</div>
+
+			<div class="form-group" style="display: flex;">
+				<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
+					<div class="block">
+						<label for="id_visitor_name">姓名</label>
+						<input type="text" name="visitor_name" value="{{ user.visitor_name }}"></p>
+					</div>
+
+					<div class="block">
+						<label for="id_Alumni_id">校友證字號</label>
+						<input type="text" name="Alumni_id" value="{{ user.Alumni_id }}">
+					</div>
+
+					<div class="block">
+						<label for="id_Alumni_id">連絡電話</label>
+						<input type="text" name="phone_num" value="{{ user.phone_num }}">
+					</div>
+
+					<div class="block">
+						<label for="id_Alumni_id">連絡電話</label>
+						<input type="text" name="email" value="{{ user.email }}">
+						<p>{{ errmsg }}</p>
+					</div>
+
+					<div class="block-2">
+						<label>住家地址</label><br>
+						<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1"
+							value="{{ home_city }}">
+						<datalist id="home_cities">
+						</datalist>
+
+						<input type="text" name="home_address_area" list="home_areas" id="ha2" value="{{ home_area }}">
+						<datalist id="home_areas">
+						</datalist>
+
+						<input type="text" name="home_address" id="ha3" value="{{ home_road }}">
+					</div>
+
+					<div class="block-2">
+						<label>通訊地址</label><br>
+						<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1"
+							value="{{ connect_city }}">
+						<datalist id="mail_cities">
+						</datalist>
+
+						<input type="text" name="mail_address_area" list="mail_areas" id="ma2" value="{{ connect_area }}">
+						<datalist id="mail_areas">
+						</datalist>
+						<input type="text" name="mail_address" id="ma3" value="{{ connect_road }}"><br>
+						<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
+
+					</div>
+
+					<div class="block-2">
+						<input id="botton" class="btn btn-success" type="submit" value="送出" />
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
-
-	<div class="form-group" style="display: flex;">
-		<div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
-			<div class="block">
-				<label for="id_visitor_name">姓名</label>
-				<input type="text" name="visitor_name" value="{{ user.visitor_name }}"></p>
-			</div>
-
-			<div class="block">
-				<label for="id_Alumni_id">校友證字號</label>
-				<input type="text" name="Alumni_id" value="{{ user.Alumni_id }}">
-			</div>
-
-			<div class="block">
-				<label for="id_Alumni_id">連絡電話</label>
-				<input type="text" name="phone_num" value="{{ user.phone_num }}">
-			</div>
-
-			<div class="block">
-				<label for="id_Alumni_id">連絡電話</label>
-				<input type="text" name="email" value="{{ user.email }}">
-				<p>{{ errmsg }}</p>
-			</div>
-
-			<div class="block-2">
-				<label>住家地址</label><br>
-				<input type="text" name="home_address_city" list="home_cities" onchange="UpdateData('home')" id="ha1"
-					value="{{ home_city }}">
-				<datalist id="home_cities">
-				</datalist>
-
-				<input type="text" name="home_address_area" list="home_areas" id="ha2" value="{{ home_area }}">
-				<datalist id="home_areas">
-				</datalist>
-
-				<input type="text" name="home_address" id="ha3" value="{{ home_road }}">
-			</div>
-
-			<div class="block-2">
-				<label>通訊地址</label><br>
-				<input type="text" name="mail_address_city" list="mail_cities" onchange="UpdateData('mail')" id="ma1"
-					value="{{ connect_city }}">
-				<datalist id="mail_cities">
-				</datalist>
-
-				<input type="text" name="mail_address_area" list="mail_areas" id="ma2" value="{{ connect_area }}">
-				<datalist id="mail_areas">
-				</datalist>
-				<input type="text" name="mail_address" id="ma3" value="{{ connect_road }}"><br>
-				<input type="checkbox" name="按鈕名稱" onchange="CopyAddress()">同住家地址
-
-			</div>
-
-			<div class="block-2">
-				<input id="botton" class="btn btn-success" type="submit" value="送出" />
-			</div>
-		</div>
-	</div>
-</form>
 {% endblock %}

@@ -5,31 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<div style="display: flex;">
-    <div style="margin: auto;">
-        <h1>訪客證登記</h1>
-    </div>
-</div>
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="form-group" style="display: flex;">
-        <div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
-            <div class="block">
-                <label>身分證</label>
-                <input name="visitor_id">
-            </div>
-
-            <div class="block">
-                <label>校友證</label>
-                <input name="Alumni_id">
-
-            </div>
-
-            <div class="block-2">
-                <p style="color: red;">{{ person_status }}</p>
-                <input class="btn btn-success" type="submit" value="下一步">
+    <div class="wrapper">
+        <div style="display: flex;">
+            <div style="margin: auto;">
+                <h1>訪客證登記</h1>
             </div>
         </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group" style="display: flex;">
+                <div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: 50%;">
+                    <div class="block">
+                        <label>身分證</label>
+                        <input name="visitor_id">
+                    </div>
+
+                    <div class="block">
+                        <label>校友證</label>
+                        <input name="Alumni_id">
+
+                    </div>
+
+                    <div class="block-2">
+                        <p style="color: red;">{{ person_status }}</p>
+                        <input class="btn btn-success" type="submit" value="下一步">
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
 {% endblock %}

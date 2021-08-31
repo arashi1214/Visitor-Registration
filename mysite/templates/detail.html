@@ -5,37 +5,39 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    <div style="display: flex;">
-        <div style="margin: auto;">
-            <h1>借用者資訊確認</h1>
-        </div>
+    <div class="wrapper">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div style="display: flex;">
+                <div style="margin: auto;">
+                    <h1>借用者資訊確認</h1>
+                </div>
+            </div>
+            <div class="form-group" style="display: flex;">
+                <div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: auto;">
+                    <div class="block">
+                        <b>歸還地點：</b>{{ data.place }}
+                    </div>
+                    <div class="block">
+                        <b>歸還訪客證號：</b>{{ data.visitor_card }}
+                    </div>
+                    <div class="block">
+                        <b>歸還者姓名：</b>{{ data.visitor_id.visitor_name }}
+                    </div>
+                    <div class="block">
+                        <b>身分證：</b>{{ data.visitor_id.visitor_id }}
+                    </div>
+                    <div class="block">
+                        <b>校友證號：</b>{{ data.Alumni_id }}
+                    </div>
+                    <div class="block">
+                        <b>歸還時間：</b>{{ return_time }}
+                    </div>
+                    <div class="block-2">
+                        <input class="btn btn-success" type="submit" value="歸還" onclick="alert('歸還成功')">
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group" style="display: flex;">
-        <div class="form-group" style="margin: auto; border: 2px ; padding: 0 10px; position: relative; width: auto;">
-            <div class="block">
-                <b>歸還地點：</b>{{ data.place }}
-            </div>
-            <div class="block">
-                <b>歸還訪客證號：</b>{{ data.visitor_card }}
-            </div>
-            <div class="block">
-                <b>歸還者姓名：</b>{{ data.visitor_id.visitor_name }}
-            </div>
-            <div class="block">
-                <b>身分證：</b>{{ data.visitor_id.visitor_id }}
-            </div>
-            <div class="block">
-                <b>校友證號：</b>{{ data.Alumni_id }}
-            </div>
-            <div class="block">
-                <b>歸還時間：</b>{{ return_time }}
-            </div>
-            <div class="block-2">
-                <input class="btn btn-success" type="submit" value="歸還" onclick="alert('歸還成功')">
-            </div>
-        </div>
-    </div>
-</form>
 {% endblock %}

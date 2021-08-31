@@ -5,28 +5,30 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    <div style="display: flex;">
-        <div style="margin: auto;">
-            <h1>歸還訪客證</h1>
-        </div>
-    </div>
+    <div class="wrapper">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div style="display: flex;">
+                <div style="margin: auto;">
+                    <h1>歸還訪客證</h1>
+                </div>
+            </div>
 
-    <div class="form-group" style="display: flex;">
-        <div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative; width: auto;">
-            <div class="block">
-                <label>歸還訪客證號</label><br>
-                <input name="visitor_card">
+            <div class="form-group" style="display: flex;">
+                <div class="form-group col-md-2" style="margin: auto; padding: 10px; position: relative; width: auto;">
+                    <div class="block">
+                        <label>歸還訪客證號</label><br>
+                        <input name="visitor_card">
+                    </div>
+                    <div class="block" style="color: red;">
+                        {{ errmsg }}
+                    </div>
+                    <div class="block-2">
+                        <input class="btn btn-success" type="submit" value="下一步">
+                    </div>
+                </div>
             </div>
-            <div class="block" style="color: red;">
-                {{ errmsg }}
-            </div>
-            <div class="block-2">
-                <input class="btn btn-success" type="submit" value="下一步">
-            </div>
-        </div>
-    </div>
 
-</form>
+        </form>
+    </div>
 {% endblock %}
